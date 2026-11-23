@@ -561,3 +561,39 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
  .scheduleSurface .quickDurations{grid-template-columns:repeat(2,minmax(0,1fr))}
  .scheduleSurface .quickDurations button{min-width:0}
 }
+
+/* v2.0.6 — glass clock with stable tabular digits */
+.heroMeta{display:flex!important;flex-direction:column;align-items:center;gap:9px;padding:18px 25px!important;
+ border:1px solid rgba(255,255,255,.35);border-radius:22px;
+ background:rgba(255,255,255,.11);backdrop-filter:blur(18px) saturate(135%);
+ -webkit-backdrop-filter:blur(18px) saturate(135%);
+ box-shadow:0 14px 48px rgba(8,25,45,.17);color:#fff;
+ font-variant-numeric:tabular-nums;letter-spacing:0!important}
+.clockDate{font-size:clamp(14px,1.5vw,19px);font-weight:650;color:rgba(255,255,255,.94);white-space:nowrap}
+.clockTime{display:flex;align-items:baseline;justify-content:center;gap:0;
+ font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;line-height:1}
+.clockHours,.clockMinutes,.clockColon{font-size:clamp(43px,7vw,86px);font-weight:760;
+ background:linear-gradient(180deg,#fff 12%,#e4f5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.clockSeconds{min-width:2ch;margin-left:10px;font-size:clamp(19px,2.8vw,32px);font-weight:750;color:#38bdf8;
+ font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.roomHeader{padding-inline:10px}
+.roomHeader strong{display:block;width:100%;max-width:100%;white-space:normal;overflow-wrap:normal;word-break:keep-all;
+ font-size:clamp(13px,1.1vw,17px);line-height:1.35;text-align:center}
+.event{gap:3px;padding-inline:9px}
+.eventDept{font-size:clamp(12px,1vw,14px)!important;line-height:1.3}
+.event strong{font-size:clamp(13px,1.1vw,16px)!important;line-height:1.35}
+.eventTime{font-size:clamp(12px,.95vw,14px)!important;line-height:1.25}
+.eventShort{padding-block:3px;gap:1px}
+.eventShort .eventDept{font-size:12px!important}
+.eventShort strong{font-size:13px!important}
+@media(max-width:700px){
+ .heroMeta{padding:15px 17px!important;max-width:calc(100vw - 30px)}
+ .clockHours,.clockMinutes,.clockColon{font-size:clamp(40px,11vw,64px)}
+ .clockSeconds{font-size:clamp(19px,5vw,26px)}
+ .clockDate{font-size:clamp(13px,3.7vw,16px)}
+ .schedule .roomHeader{padding-inline:10px}
+ .schedule .roomHeader strong{font-size:clamp(15px,4vw,19px);white-space:normal;word-break:keep-all;overflow-wrap:normal}
+ .schedule .event strong{font-size:14px!important}
+ .schedule .eventDept{font-size:12px!important}
+ .schedule .eventTime{font-size:12px!important}
+}

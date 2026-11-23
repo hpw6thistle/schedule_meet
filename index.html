@@ -8,7 +8,7 @@
 <body>
 <div class="page"><header class="navbar appNavbar" aria-label="主要導覽">
 <button type="button" id="navHome" class="navHomeBack" aria-label="返回首頁">← 首頁</button>
-<nav class="mainNav" aria-label="功能分頁"><button type="button" id="navSchedule" class="navTab">預約會議</button><button type="button" id="topMine" class="navTab">我的預約 <span class="navCount" id="myCount">0</span></button></nav>
+<nav class="mainNav" aria-label="功能分頁"><button type="button" id="navSchedule" class="navTab">預約會議</button><button type="button" id="topMine" class="navTab">我的會議 <span class="navCount" id="myCount">0</span></button></nav>
 
 </header>
 <main class="main">
@@ -16,7 +16,7 @@
   <div class="immersiveBackdrop" aria-hidden="true"></div>
   <div class="immersiveWash" aria-hidden="true"></div>
   <div class="immersiveNoise" aria-hidden="true"></div>
-  <button type="button" class="homeShortcut" id="homeBookingShortcut">我的預約 <span aria-hidden="true">↗</span></button>
+  <button type="button" class="homeShortcut" id="homeBookingShortcut">我的會議 <span aria-hidden="true">↗</span></button>
   <div class="heroFrame">
     <div class="heroDock">
       <div class="heroMeta" id="heroDate"></div><div class="todayRooms" id="todayRooms" aria-live="polite"></div>
@@ -29,7 +29,7 @@
 <div class="surface scheduleSurface"><div class="toolbar"><div class="dateGroup"><button class="iconbtn" id="prevDay" aria-label="前一天">‹</button><button class="btn dateTrigger" id="dateTrigger" aria-expanded="false" aria-haspopup="dialog"><span id="currentDate"></span><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button class="iconbtn" id="nextDay" aria-label="後一天">›</button><button class="btn today" id="todayBtn">今天</button></div><div class="toolGroup"><div class="quickAnchor"><button id="quickOpen" class="btn" type="button" aria-expanded="false" aria-controls="quickPopover" aria-haspopup="dialog"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m16 16 4 4"/></svg>快速找空房 <span id="quickDurationLabel" class="quickDurationLabel">60 分鐘</span></button><div id="quickPopover" class="quickPopover" role="dialog" aria-label="快速找空房" hidden><div class="quickPopoverTitle">預約時長</div><div class="quickDurations" role="group" aria-label="預約時長"><button type="button" data-quick-duration="1">30 分鐘</button><button type="button" data-quick-duration="2">60 分鐘</button><button type="button" data-quick-duration="3">90 分鐘</button><button type="button" data-quick-duration="4">120 分鐘</button></div><button id="quickApply" type="button" class="quickApply">標示可用空檔</button></div></div></div>
 <div id="calendarPopover" class="calendarPopover" role="dialog" aria-label="選擇日期" hidden><div class="monthNav"><button type="button" class="calendarHeading" id="monthTitle" aria-label="切換月份選擇"></button><div class="monthBtns"><button id="monthPrev" class="iconbtn" aria-label="上一個期間">‹</button><button id="monthNext" class="iconbtn" aria-label="下一個期間">›</button></div></div><div class="calGrid" id="calGrid"></div><div class="calendarFooter"><button class="btn" id="calendarToday">今天</button></div></div></div><div class="mobileRoomPicker" id="mobileRoomPicker" role="group" aria-label="選擇會議室"></div><div class="scheduleScroll" id="scheduleScroll"><div class="schedule" id="schedule"></div></div><div class="footerline"></div></div>
 </section>
-<section id="mineView" class="view" hidden><div class="titleRow"><h1>我的預約</h1><button id="backSchedule" class="btn">返回排程</button></div><div class="surface minePanel"><div class="mineToolbar"><select id="mineStatus" class="select" aria-label="預約狀態"><option value="upcoming">即將到來</option><option value="all">全部預約</option><option value="past">歷史預約</option></select><select id="mineRoom" class="select" aria-label="會議室篩選"><option value="all">所有會議室</option></select><input id="mineDate" class="field" type="date" aria-label="預約日期篩選"><button id="clearMineFilters" class="btn">清除篩選</button></div><div class="mineList" id="mineList"></div></div></section>
+<section id="mineView" class="view" hidden><div class="titleRow"><h1>我的會議</h1><button id="backSchedule" class="btn">返回排程</button></div><div class="surface minePanel"><div class="mineToolbar"><select id="mineStatus" class="select" aria-label="預約狀態"><option value="upcoming">即將到來</option><option value="all">全部預約</option><option value="past">歷史預約</option></select><select id="mineRoom" class="select" aria-label="會議室篩選"><option value="all">所有會議室</option></select><input id="mineDate" class="field" type="date" aria-label="預約日期篩選"><button id="clearMineFilters" class="btn">清除篩選</button></div><div class="mineList" id="mineList"></div></div></section>
 </main><footer class="appFootbar" id="integrationFooter" hidden><button id="integrationBtn" class="navbutton integrationPill" type="button" title="Google Workspace 整合資訊">Google Workspace <span aria-hidden="true">↗</span></button></footer></div>
 <div id="popup" class="popShell" hidden><div id="scrim" class="scrim"></div><section id="dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialogHead"><h2 id="dialogTitle"></h2><button id="dialogClose" class="iconbtn closeButton" aria-label="關閉">×</button></div><div class="dialogContent" id="dialogContent"></div><div class="dialogFoot" id="dialogFoot"></div></section></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>

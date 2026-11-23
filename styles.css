@@ -540,3 +540,6 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){
  .immersiveBackdrop,.immersiveWash,.immersiveNoise{animation:none!important;will-change:auto}
 }
+
+/* v2.0.4: ensure the hidden homepage availability list stays hidden despite layout styles */
+#todayRooms[hidden]{display:none!important}

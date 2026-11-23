@@ -483,10 +483,10 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
  .mobileRoomPicker{display:flex;gap:7px;overflow-x:auto;padding:10px 12px;scrollbar-width:thin}
  .mobileRoomButton{flex:0 0 auto;border:1px solid #d7e1ee;border-radius:999px;padding:9px 13px;background:#fff;color:#31465c;font-size:12px}
  .mobileRoomButton.active{background:#1e5f9d;color:#fff;border-color:#1e5f9d}
- .schedule{width:100%;min-width:0!important;max-width:100%;grid-template-columns:58px minmax(0,1fr)!important;grid-template-rows:auto auto!important}
+ .schedule{width:100%;min-width:0!important;max-width:100%;grid-template-columns:58px minmax(0,1fr)!important;grid-template-rows:86px 756px!important}
  .schedule .roomHeader,.schedule .lane{grid-column:2!important;min-width:0;max-width:100%;overflow:hidden;writing-mode:horizontal-tb;overflow-wrap:normal}
  .schedule .roomHeader{display:flex;min-height:70px;padding:10px 12px;align-items:flex-start;justify-content:center}
- .schedule .roomHeader strong{white-space:normal;overflow-wrap:anywhere;line-height:1.4}
+ .schedule .roomHeader strong{white-space:normal;overflow-wrap:break-word;word-break:normal;line-height:1.4}
  .schedule .lane{display:block}
  .schedule .event{max-width:calc(100% - 12px);min-width:0}
  .schedule .event strong,.schedule .eventDept{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

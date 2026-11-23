@@ -227,7 +227,7 @@ body[data-view="home"] .appNavbar {display: none;}
 body.hero-content-ready[data-view="home"] .homeShortcut {opacity: 1; transform: translateY(0);}
 .homeShortcut:hover {background: white; transform: translateY(-2px);}
 .scheduleScroll {width: 100%; max-width: 100%; overflow-x: auto; overflow-y: visible; overscroll-behavior-x: contain; border-radius: 0 0 17px 17px; scrollbar-gutter: stable;}
-.schedule {min-width: 930px; width: 100%; grid-template-columns: 86px repeat(4,minmax(208px,1fr)); grid-template-rows: 86px 756px;}
+.schedule {min-width: 1138px; width: 100%; grid-template-columns: 86px repeat(5,minmax(208px,1fr)); grid-template-rows: 86px 756px;}
 .roomHeader {position: relative; padding: 14px 20px; overflow: visible; z-index: 7; cursor: help; min-width: 0;}
 .roomHeader:hover {background: #f4f7fb;}
 .roomHeader:focus-visible {background: #f4f7fb;}
@@ -434,3 +434,24 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce) {
   .heroDock {transition:none;transform:none;}
 }
+
+/* v2.0.1: consistent department event styling */
+.event.joint{background:color-mix(in srgb,#3867a8 12%,white);border-color:#3867a8;color:#3867a8;}
+.event.hr{background:color-mix(in srgb,#8b52a3 12%,white);border-color:#8b52a3;color:#8b52a3;}
+.event.legal{background:color-mix(in srgb,#2f7d74 12%,white);border-color:#2f7d74;color:#2f7d74;}
+.event.finance{background:color-mix(in srgb,#ad6239 12%,white);border-color:#ad6239;color:#ad6239;}
+.event.planning{background:color-mix(in srgb,#6b6db0 12%,white);border-color:#6b6db0;color:#6b6db0;}
+.event.management{background:color-mix(in srgb,#a34d71 12%,white);border-color:#a34d71;color:#a34d71;}
+.event.it{background:color-mix(in srgb,#527c39 12%,white);border-color:#527c39;color:#527c39;}
+.event.procurement{background:color-mix(in srgb,#8a7040 12%,white);border-color:#8a7040;color:#8a7040;}
+.event.renewal{background:color-mix(in srgb,#447d99 12%,white);border-color:#447d99;color:#447d99;}
+.event.leasing{background:color-mix(in srgb,#994e50 12%,white);border-color:#994e50;color:#994e50;}
+.event.rd{background:color-mix(in srgb,#6176a3 12%,white);border-color:#6176a3;color:#6176a3;}
+.event.advertising{background:color-mix(in srgb,#a16b33 12%,white);border-color:#a16b33;color:#a16b33;}
+.event.design{background:color-mix(in srgb,#7c55a5 12%,white);border-color:#7c55a5;color:#7c55a5;}
+.event.general{background:color-mix(in srgb,#4e8270 12%,white);border-color:#4e8270;color:#4e8270;}
+.event.secretariat{background:color-mix(in srgb,#aa587e 12%,white);border-color:#aa587e;color:#aa587e;}
+.event.acceptance{background:color-mix(in srgb,#6b7f43 12%,white);border-color:#6b7f43;color:#6b7f43;}
+.event.building85{background:color-mix(in srgb,#5670a0 12%,white);border-color:#5670a0;color:#5670a0;}
+.event.construction{background:color-mix(in srgb,#956349 12%,white);border-color:#956349;color:#956349;}
+.event,.event.mine,.event.busy{border-style:solid;border-width:1px;}

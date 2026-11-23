@@ -35,7 +35,7 @@ function renderHome(){
  const label=document.createElement('span');label.className='todayRoomsLabel';label.textContent='今日可用會議室 · 本機模擬資料';root.append(label);
  const list=document.createElement('div');list.className='todayRoomsList';
  for(const room of ROOMS){
-  const now=Math.max(0,nowSlot()),available=Array.from({length:18-now},(_,i)=>i+now).some(s=>canBook(todayISO(),room.id,s,s+1));
+  const now=Math.min(18,Math.max(0,nowSlot())),available=Array.from({length:18-now},(_,i)=>i+now).some(s=>canBook(todayISO(),room.id,s,s+1));
   const chip=b(room.name+' · '+(available?'有空檔':'暫無空檔'),()=>{state.mobileRoom=room.id;setDate(todayISO());setView('schedule')},'todayRoomChip');
   list.append(chip);
  }

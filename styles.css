@@ -395,7 +395,7 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 @media (max-width:720px) {
   .homeShortcut {top: 20px; right: 20px;}
   .scheduleScroll {scrollbar-gutter: auto;}
-  .schedule {min-width: 850px; grid-template-columns: 72px repeat(4,minmax(194px,1fr));}
+  .schedule {min-width: 850px; grid-template-columns: 72px repeat(5,minmax(194px,1fr));}
   .roomEquipment {min-width: 170px;}
   .mineItem {padding: 16px;}
   .mineButtons .btn {font-size: 12px;}
@@ -455,3 +455,48 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 .event.building85{background:color-mix(in srgb,#5670a0 12%,white);border-color:#5670a0;color:#5670a0;}
 .event.construction{background:color-mix(in srgb,#956349 12%,white);border-color:#956349;color:#956349;}
 .event,.event.mine,.event.busy{border-style:solid;border-width:1px;}
+
+/* v2.0.1: room availability, readable booking cards and responsive single-room timeline */
+.todayRooms{width:min(720px,92vw);max-width:min(720px,92vw);display:flex;flex-direction:column;gap:10px;align-items:center;color:#fff;text-shadow:0 2px 12px #0009}
+.todayRoomsLabel{font-size:12px;font-weight:650;letter-spacing:.04em}
+.todayRoomsList{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:100%}
+.todayRoomChip{min-height:34px;max-width:100%;padding:7px 11px;border:1px solid #ffffff88;border-radius:999px;background:#13283e77;color:#fff;font-size:12px;backdrop-filter:blur(8px)}
+.todayRoomChip:hover{background:#173e66bb}
+.heroDock{gap:15px;max-width:100%;padding-inline:12px}
+.immersiveBackdrop{will-change:transform,filter;animation:heroFilterBreath 22s ease-in-out infinite alternate}
+.immersiveNoise{animation:heroNoiseBreath 11s ease-in-out infinite alternate}
+@keyframes heroFilterBreath{0%{filter:brightness(.88) saturate(.72) contrast(.96);transform:scale(1.02)}100%{filter:brightness(1.04) saturate(.94) contrast(1.04);transform:scale(1.13)}}
+@keyframes heroNoiseBreath{0%{opacity:.26}100%{opacity:.58}}
+.event{border-style:solid;gap:3px}
+.eventDept{font-size:11px;font-weight:670;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.event strong{font-size:12px;font-weight:750}
+.eventTime{font-size:11px}
+.eventShort{padding:4px 8px;gap:1px}
+.eventShort .eventDept{font-size:10px}
+.eventShort strong{font-size:11px}
+.eventShort .eventTime{display:none}
+.mobileRoomPicker{display:none}
+.reminderGroup{padding:10px 12px;background:#f3f6fa;border-radius:9px}
+.reminderGroup label{display:flex;align-items:center;gap:6px}
+.reminderGroup small{display:block;color:#64748b;margin-top:5px}
+@media(max-width:700px){
+ .mobileRoomPicker{display:flex;gap:7px;overflow-x:auto;padding:10px 12px;scrollbar-width:thin}
+ .mobileRoomButton{flex:0 0 auto;border:1px solid #d7e1ee;border-radius:999px;padding:9px 13px;background:#fff;color:#31465c;font-size:12px}
+ .mobileRoomButton.active{background:#1e5f9d;color:#fff;border-color:#1e5f9d}
+ .schedule{width:100%;min-width:0!important;max-width:100%;grid-template-columns:58px minmax(0,1fr)!important;grid-template-rows:86px 756px!important}
+ .schedule .roomHeader,.schedule .lane{grid-column:2!important;min-width:0;max-width:100%;overflow:hidden;writing-mode:horizontal-tb;overflow-wrap:normal}
+ .schedule .roomHeader{display:flex;min-height:70px;padding:10px 12px;align-items:flex-start;justify-content:center}
+ .schedule .roomHeader strong{white-space:normal;overflow-wrap:break-word;word-break:normal;line-height:1.4}
+ .schedule .lane{display:block}
+ .schedule .event{max-width:calc(100% - 12px);min-width:0}
+ .schedule .event strong,.schedule .eventDept{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .scheduleSurface{min-width:0}
+ .scheduleScroll{width:100%;max-width:100%;overflow-x:hidden!important}
+ .scheduleScroll{overflow-x:hidden}
+ .heroDock{padding-bottom:clamp(24px,5svh,65px)}
+ .todayRooms{max-width:92vw}
+ .todayRoomsList{max-height:145px;overflow-y:auto}
+ .todayRoomChip{font-size:11px}
+ .heroDock{padding-bottom:clamp(24px,5svh,65px)}
+}
+@media(prefers-reduced-motion:reduce){.immersiveBackdrop,.immersiveNoise{animation:none!important}}

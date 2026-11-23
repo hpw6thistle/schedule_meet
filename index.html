@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
-<title>會議室預約 · v2.0.6</title>
+<title>會議室預約 · v2.0.7</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,8 +19,10 @@
   <button type="button" class="homeShortcut" id="homeBookingShortcut">我的會議</button>
   <div class="heroFrame">
     <div class="heroDock">
-      <div class="heroMeta" id="heroDate"></div><div class="todayRooms" id="todayRooms" aria-live="polite" hidden></div>
+      <div class="heroMeta" id="heroDate"></div>
       <button type="button" id="heroMinePrimary" class="heroCTA">預約會議</button>
+      <!-- Status cards reuse the current schedule model; not live Calendar data. -->
+      <div class="todayRooms" id="todayRooms" aria-label="目前各會議室狀態（示範資料）"></div>
     </div>
   </div>
 </section>

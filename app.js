@@ -32,12 +32,14 @@ function setView(view){if(!['home','schedule','mine'].includes(view))view='home'
 function renderHome(){
  $('heroDate').textContent=nameDate(todayISO(),true);
  const root=$('todayRooms');root.replaceChildren();
- const label=document.createElement('span');label.className='todayRoomsLabel';label.textContent='今日可用會議室（本機示範資料，非即時空房）';root.append(label);
+
  const list=document.createElement('div');list.className='todayRoomsList';
  for(const room of ROOMS){
   const now=Math.min(18,Math.max(0,nowSlot())),available=Array.from({length:18-now},(_,i)=>i+now).some(s=>canBook(todayISO(),room.id,s,s+1));
-  const chip=b(room.name+' · '+(available?'有空檔':'暫無空檔'),()=>{state.mobileRoom=room.id;setDate(todayISO());setView('schedule')},'todayRoomChip');
-  list.append(chip);
+  const chip=b('',()=>{state.mobileRoom=room.id;setDate(todayISO());setView('schedule')},'todayRoomChip');
+  const name=document.createElement('span');name.className='todayRoomName';name.textContent=room.name;
+  const status=document.createElement('span');status.className='todayRoomStatus';status.textContent=available?'有空檔':'暫無空檔';
+  chip.append(name,status);chip.setAttribute('aria-label',room.name+'，'+status.textContent+'（本機模擬）');list.append(chip);
  }
  root.append(list);
 }

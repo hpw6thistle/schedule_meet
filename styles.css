@@ -1,0 +1,438 @@
+
+/* V13 consolidated stylesheet. Responsive modifiers follow component rules. */
+:root {--paper: #fff;}
+* {box-sizing: border-box;}
+html {font-family: Inter,-apple-system,BlinkMacSystemFont,"Noto Sans TC","Segoe UI",sans-serif; color: var(--ink);}
+body {margin: 0; font-size: 14px; min-height: 100vh;}
+body:before {content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;}
+button {font: inherit;}
+input {font: inherit;}
+select {font: inherit;}
+button {cursor: pointer;}
+button:disabled {cursor: not-allowed; opacity: .42;}
+button:focus-visible {outline: 3px solid #90bdfa; outline-offset: 2px;}
+input:focus-visible {outline: 3px solid #90bdfa; outline-offset: 2px;}
+select:focus-visible {outline: 3px solid #90bdfa; outline-offset: 2px;}
+svg {height: 18px; width: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;}
+[hidden] {display: none !important;}
+button {transition: background-color .18s ease,border-color .18s ease,box-shadow .22s ease,opacity .18s ease,transform .18s ease;}
+.surface {transition: background-color .18s ease,border-color .18s ease,box-shadow .22s ease,opacity .18s ease,transform .18s ease;}
+.event {transition: background-color .18s ease,border-color .18s ease,box-shadow .22s ease,opacity .18s ease,transform .18s ease;}
+.dateButton {transition: background-color .18s ease,border-color .18s ease,box-shadow .22s ease,opacity .18s ease,transform .18s ease;}
+button:active:not(:disabled) {transform: scale(.985);}
+.navbar {display: flex; align-items: center; gap: 15px;}
+.brand {display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); font-size: 18px; font-weight: 760; letter-spacing: -.65px;}
+.mark {display: grid; place-items: center; width: 34px; height: 34px; background: #1974e5; color: #fff; border-radius: 10px; box-shadow: 0 4px 14px #2c86e43d;}
+.mark svg {width: 20px; height: 20px;}
+.navright {display: flex; align-items: center;}
+.navbutton {display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #dce4ee; background: white; border-radius: 10px; min-height: 39px; padding: 0 14px; font-weight: 630; white-space: nowrap;}
+.btn {display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #dce4ee; background: white; border-radius: 10px; min-height: 39px; padding: 0 14px; font-weight: 630; white-space: nowrap;}
+.iconbtn {display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #dce4ee; background: white; border-radius: 10px; min-height: 39px; font-weight: 630; white-space: nowrap;}
+.iconbtn {padding: 0; width: 39px;}
+.count {font-size: 11px; color: #fff; background: #203b5d; border-radius: 6px; padding: 2px 6px;}
+.main {padding-bottom: 65px;}
+.view {animation: pageIn .28s ease both;}
+.titleRow {display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 17px 0 19px;}
+.titleRow h1 {letter-spacing: -.9px; font-weight: 750; margin: 0;}
+.titleActions {display: flex; align-items: center; gap: 9px;}
+.surface {border: 1px solid #dce5ef; background: var(--paper); box-shadow: var(--shadow);}
+.surface:hover {box-shadow: 0 27px 74px rgba(30,58,100,.11),0 2px 10px rgba(30,58,100,.035);}
+.toolbar {position: relative; z-index: 7; display: flex; justify-content: space-between; align-items: center; gap: 13px; padding: 16px 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap;}
+.dateGroup {display: flex; align-items: center; gap: 8px;}
+.dateTrigger {min-width: 205px; font-size: 15px; font-weight: 760;}
+.dateTrigger svg {width: 15px; height: 15px;}
+.today {font-size: 13px;}
+.toolGroup .select {height: 39px;}
+.select {height: 40px; border-radius: 10px; border: 1px solid #d8e2ee; background: white; padding: 0 11px; min-width: 0;}
+.field {height: 40px; border-radius: 10px; border: 1px solid #d8e2ee; background: white; padding: 0 11px; min-width: 0;}
+.select {padding-right: 20px;}
+.calendarPopover {position: absolute; top: calc(100% - 4px); left: 66px; width: 315px; max-width: calc(100vw - 36px); border: 1px solid #d5e1ef; border-radius: 16px; background: #fff; box-shadow: var(--float); padding: 16px; z-index: 20; transform-origin: top center; animation: popIn .2s ease both;}
+.monthNav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;}
+.monthNav strong {font-size: 15px;}
+.monthBtns {display: flex; gap: 4px;}
+.monthBtns .iconbtn {width: 31px; min-height: 31px;}
+.calGrid {display: grid; grid-template-columns: repeat(7,1fr); gap: 4px;}
+.calDow {height: 28px; display: grid; place-items: center; font-size: 11px; color: var(--muted);}
+.dateButton {border: 1px solid transparent; background: white; border-radius: 9px; min-height: 36px; color: #35506a; font-weight: 600;}
+.dateButton.outside {color: #bac5d3;}
+.dateButton:disabled {color: #d3dbe5;}
+.calendarFooter {display: flex; justify-content: flex-end; border-top: 1px solid var(--line2); margin-top: 12px; padding-top: 12px;}
+.calendarFooter .btn {min-height: 31px; font-size: 12px;}
+.schedule {display: grid; --hour: 84px;}
+.corner {grid-area: 1/1/2/2; color: #9aacc0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; place-items: center; font-size: 11px; position: sticky; left: 0; z-index: 5;}
+.roomHeader {display: flex; flex-direction: column; justify-content: center; gap: 5px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);}
+.roomHeader strong {font-size: 14px; letter-spacing: -.15px;}
+.roomHeader small {font-size: 11px; color: var(--muted);}
+.axis {grid-area: 2/1/3/2; border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 5;}
+.timeTick {position: absolute; right: 12px; transform: translateY(-50%); color: #8190a4; font-size: 11px;}
+.timeTick:first-child {transform: translateY(7px);}
+.timeTick:last-child {transform: translateY(-110%);}
+.lane {position: relative; border-right: 1px solid var(--line); background-image: repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--hour)/2 - 1px),#edf1f7 calc(var(--hour)/2 - 1px),#edf1f7 calc(var(--hour)/2),transparent calc(var(--hour)/2),transparent calc(var(--hour) - 1px),#dfe7f1 calc(var(--hour) - 1px),#dfe7f1 var(--hour)); cursor: crosshair;}
+.slotHover {position: absolute; left: 5px; right: 5px; border: 1px solid #7eb4f6; border-radius: 8px; opacity: 0; pointer-events: none; z-index: 1;}
+.lane:hover .slotHover {opacity: 1;}
+.event {position: absolute; z-index: 2; left: 6px; right: 6px; border: 1px solid; border-radius: 9px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px; overflow: hidden; text-align: left; padding: 8px 10px; line-height: 1.25;}
+.event:hover {filter: saturate(1.13) brightness(.99); z-index: 3;}
+.event strong {font-size: 12px; font-weight: 740; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.event small {font-size: 11px; opacity: .8;}
+.event.sales {background: #e6f0ff; border-color: #b6d1f6; color: #366bab;}
+.event.design {background: #eee5fc; border-color: #d6c3f4; color: #7950a8;}
+.event.ops {background: #fff0df; border-color: #f1d2ac; color: #9c682d;}
+.event.other {background: #eaf0f6; border-color: #d2deea; color: #647891;}
+.event.busy {background: #e9eef5; border-color: #ccd6e1; color: #5d6c80;}
+.footerline {height: 12px; background: #fff;}
+.popShell {position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px;}
+.scrim {position: absolute; inset: 0; background: rgba(17,32,53,.30); backdrop-filter: blur(5px); animation: fadeIn .21s ease both;}
+.dialog {position: relative; z-index: 1; background: white; border: 1px solid #d9e3ed; border-radius: 18px; box-shadow: var(--float); width: min(510px,100%); max-height: min(88vh,850px); overflow: auto; animation: dialogIn .24s cubic-bezier(.19,1,.22,1) both;}
+.dialog.wide {width: min(590px,100%);}
+.dialogHead {padding: 22px 24px 17px; border-bottom: 1px solid var(--line2); display: flex; justify-content: space-between; align-items: center; gap: 12px;}
+.dialogHead h2 {font-size: 19px; letter-spacing: -.45px; margin: 0;}
+.dialogContent {padding: 21px 24px;}
+.dialogFoot {border-top: 1px solid var(--line2); padding: 16px 24px; display: flex; gap: 9px; justify-content: flex-end;}
+.fieldGroup {margin-bottom: 17px;}
+.fieldGroup:last-child {margin-bottom: 0;}
+.fieldGroup label {display: block; font-size: 12px; color: #687a91; font-weight: 680; margin-bottom: 8px;}
+.formLabel {display: block; font-size: 12px; color: #687a91; font-weight: 680; margin-bottom: 8px;}
+.field {width: 100%;}
+.grid2 {display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+.summary {border: 1px solid #e2eaf5; border-radius: 11px; padding: 13px 15px; margin-bottom: 20px;}
+.summary strong {display: block; font-size: 15px;}
+.summary small {display: block; color: var(--muted); margin-top: 5px;}
+.repeatTabs {display: flex; flex-wrap: wrap; gap: 7px;}
+.repeatButton {min-height: 34px; border: 1px solid #dce5ef; border-radius: 8px; background: #fff; padding: 0 12px; font-size: 12px; font-weight: 650; color: #5d7088;}
+.repeatPreview {border: 1px solid var(--line); border-radius: 9px; margin-top: 10px; max-height: 150px; overflow-y: auto; padding: 11px; font-size: 12px; color: #5c6b7d;}
+.repeatPreview ul {margin: 7px 0 0; padding-left: 20px;}
+.repeatPreview li {padding: 2px 0;}
+.repeatPreview .conflict {color: #b33e53;}
+.minor {font-size: 12px; color: var(--muted);}
+.miniText {font-size: 13px; line-height: 1.7; color: #53637a;}
+.toast {position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 90; border: 1px solid #243b55; background: #213952; color: white; border-radius: 10px; box-shadow: 0 12px 45px #1225424a; padding: 12px 18px; font-size: 13px; animation: toastIn .2s ease both; max-width: calc(100vw - 30px);}
+.minePanel {padding: 20px;}
+.mineToolbar {display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px;}
+.mineToolbar .select {width: auto; min-width: 145px;}
+.mineToolbar .field {width: auto; min-width: 145px;}
+.mineList {display: grid; gap: 9px;}
+.mineItem {display: grid; align-items: center; border: 1px solid #e0e8f0; border-radius: 11px; background: #fff; animation: pageIn .22s ease both;}
+.mineItem:hover {background: #fbfdff;}
+.mineDay {font-size: 13px; font-weight: 740;}
+.mineDay small {display: block; font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 500;}
+.mineDesc strong {font-size: 14px;}
+.mineDesc small {display: block; color: var(--muted); font-size: 12px; margin-top: 5px;}
+.mineButtons {display: flex;}
+.mineButtons .btn {font-size: 12px;}
+.empty {padding: 55px 20px; text-align: center; color: #8390a3; border: 1px dashed #dce5ef; border-radius: 12px;}
+.badge {display: inline-flex; align-items: center; border-radius: 6px; font-size: 11px; font-weight: 650; padding: 4px 7px; background: #eaf3ff; color: #276cb8;}
+.subheading {font-size: 13px; color: var(--muted); margin: 0 0 12px;}
+.closeButton {min-width: 34px; width: 34px; min-height: 34px; padding: 0;}
+.icon {width: 17px; height: 17px;}
+@@keyframes fadeOut {from{opacity:1}to{opacity:0}}
+.popShell.isClosing {animation: fadeOut .16s ease both; pointer-events: none;}
+.popShell.isClosing .dialog {animation: none;}
+.popShell.isClosing .scrim {animation: none;}
+@@keyframes pageIn {from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@@keyframes fadeIn {from{opacity:0}to{opacity:1}}
+@@keyframes popIn {from{opacity:0;transform:translateY(-5px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@@keyframes dialogIn {from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@@keyframes toastIn {from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+:root {--ink: #1e211f; --muted: #777978; --line: #e7e5e1; --line2: #f1efea; --brand: #ff7900; --light: #fff2e8; --bg: #f8f8f7; --shadow: 0 18px 55px rgba(36,29,18,.075),0 2px 11px rgba(36,29,18,.035); --float: 0 26px 90px rgba(37,29,18,.20);}
+html {background: #f8f8f7;}
+body {background: transparent; transition: background-color .45s ease;}
+body:before {background: #f8f8f7; transition: background-color .5s ease;}
+body[data-view="schedule"]:before {background: #f6f6f4;}
+body[data-view="mine"]:before {background: #f6f6f4;}
+.navbar {height: 111px; position: relative; z-index: 12; justify-content: space-between;}
+.wordmark {font-size: 23px; font-weight: 850; letter-spacing: -1.15px; color: #141716;}
+.wordmarkDot {color: var(--brand);}
+.mainNav {position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 7px; border: 1px solid #f0efed; background: #fff; border-radius: 999px; box-shadow: 0 7px 25px rgba(33,29,23,.025);}
+.navTab {border: 0; background: none; color: #444544; border-radius: 999px; height: 40px; padding: 0 23px; font-weight: 690; font-size: 13px; white-space: nowrap;}
+.navTab:hover {background: #f5f4f1;}
+.navTab.current {background: #252525; color: white;}
+.navCount {display: inline-flex; justify-content: center; align-items: center; margin-left: 3px; font-size: 11px; min-width: 18px; height: 18px; border-radius: 50%; background: #eae9e5; color: #4a4a47;}
+.navTab.current .navCount {background: #555; color: white;}
+.navright {gap: 9px;}
+.integrationPill {background: transparent; border-color: transparent; border-radius: 999px; font-weight: 550;}
+.integrationPill:hover {background: white; border-color: #e7e5e2;}
+.ctaSmall {min-height: 46px; border-radius: 999px; border: 1px solid #ff7900; background: #ff7900; color: white; font-weight: 750; padding: 0 23px; display: flex; align-items: center; gap: 16px; white-space: nowrap;}
+.ctaSmall:hover {background: #ed6900; box-shadow: 0 9px 25px #ff790033; transform: translateY(-2px);}
+.homeView {min-height: calc(100vh - 140px);}
+.heroTop {z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 15px;}
+.heroBottom {z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 15px;}
+.orangeSlash {display: block; width: 10px; height: 22px; background: var(--brand); transform: skew(-35deg); border-radius: 2px;}
+.heroDate {font-size: 12px; color: #939390;}
+.heroCTA {min-height: 64px; justify-content: center;}
+.heroCTA span {font-size: 28px; line-height: 1; transition: transform .2s ease;}
+.heroCTA:hover span {transform: translate(3px,-3px);}
+.textCTA:hover span {transform: translate(3px,-3px);}
+.verticalType {writing-mode: vertical-rl; font-family: Georgia,serif; font-size: 22px; letter-spacing: .13em; color: #4f4c48;}
+.heroBottom {font-size: 12px; font-weight: 640; letter-spacing: .12em;}
+.heroBottom>span {display: flex; align-items: center; gap: 18px;}
+.heroLine {height: 1px; width: 58px; background: #35312e; display: inline-block;}
+.textCTA {border: 0; border-bottom: 1px solid #171a17; border-radius: 0; background: none; padding: 9px 0; color: #1b1b19; font-weight: 650; display: inline-flex; align-items: center; gap: 34px;}
+.textCTA span {font-size: 19px; transition: transform .2s ease;}
+.textCTA:hover {color: #ed6a00; border-color: #ed6a00;}
+.titleRow h1 {font-size: 28px; color: #20211f;}
+.surface {border-color: #e7e4df; border-radius: 20px;}
+.toolbar {border-bottom-color: #edeae5;}
+.btn {border-color: #e1ded9; color: #292b29;}
+.iconbtn {border-color: #e1ded9; color: #292b29;}
+.navbutton {border-color: #e1ded9; color: #292b29;}
+.select {border-color: #e1ded9; color: #292b29;}
+.field {border-color: #e1ded9; color: #292b29;}
+.btn:hover {background: #fff8f1; border-color: #f3ba86;}
+.iconbtn:hover {background: #fff8f1; border-color: #f3ba86;}
+.navbutton:hover {background: #fff8f1; border-color: #f3ba86;}
+.btn.blue {background: #ff7900; border-color: #ff7900; color: #fff;}
+.btn.blue:hover {background: #e86a00;}
+.repeatButton.active {background: #fff0e2; color: #d85e00; border-color: #f7ba89;}
+.dateButton.current {background: #ff7900; color: white;}
+.dateButton.today:not(.current) {border-color: #ffb16c;}
+.dateButton:hover:not(:disabled) {background: #fff2e7;}
+.dateTrigger svg {color: #bd7b47;}
+.slotHover {border-color: #ff9b45; background: #ffca8c65;}
+.lane:hover {background-color: #fffdfa;}
+.roomHeader {background: #fdfcfb;}
+.corner {background: #fdfcfb;}
+.axis {background: #fdfcfb;}
+.event.mine {background: #fff0dc; border-color: #ffbe82; color: #a65a15;}
+.event:hover {box-shadow: 0 5px 15px #5d33151c;}
+.footerline {border-radius: 0 0 20px 20px;}
+.summary {background: #fff8f1; border-color: #f2e2d0;}
+.navbutton.current {background: #fff1e6; border-color: #ffc59b; color: #b75b15;}
+@@keyframes arrowFloat {from{transform:translateY(-6px) rotate(-1deg)}to{transform:translateY(13px) rotate(1deg)}}
+.page {width: min(1360px,calc(100% - 72px)); margin: auto;}
+.appNavbar {position: sticky; z-index: 40; transition: opacity .45s ease,transform .45s ease;}
+body[data-view="home"] .appNavbar {opacity: 0; pointer-events: none; transform: translateY(-16px);}
+body[data-view="home"] .page {width: 100%; margin: 0;}
+.immersiveBackdrop {position: absolute; inset: 0; pointer-events: none;}
+.immersiveWash {position: absolute; inset: 0; pointer-events: none;}
+.immersiveNoise {position: absolute; inset: 0; pointer-events: none;}
+.immersiveBackdrop {background-image: url("assets/hero.jpg"); background-size: cover; filter: brightness(.95) saturate(.78) contrast(.98); transform: scale(1.02); z-index: -3;}
+.immersiveWash {opacity: .08; z-index: -2;}
+.immersiveNoise {background: radial-gradient(circle at 25% 15%,rgba(255,145,0,.16),transparent 30%),radial-gradient(circle at 80% 78%,rgba(255,255,255,.08),transparent 32%); mix-blend-mode: soft-light; opacity: .45; z-index: -1;}
+.heroCTA {display: inline-flex; align-items: center; gap: 12px; border-radius: 999px; padding: 17px 26px; letter-spacing: -.02em; font-size: 18px;}
+.heroCTA {color: #fff;}
+.heroCTA:hover {transform: translateY(-1px);}
+html {max-width: 100%; overflow-x: clip;}
+body {max-width: 100%; overflow-x: clip;}
+.page {min-width: 0; max-width: 100%;}
+.main {min-width: 0; max-width: 100%;}
+.view {min-width: 0; max-width: 100%;}
+.surface {min-width: 0; max-width: 100%;}
+.scheduleSurface {min-width: 0; max-width: 100%;}
+body[data-view="home"] .main {padding: 0;}
+body[data-view="home"] .appNavbar {display: none;}
+.immersiveBackdrop {background-position: center 56%;}
+.immersiveWash {background: linear-gradient(180deg,rgba(247,247,243,.02),rgba(247,247,243,.06) 48%,rgba(247,247,243,.44));}
+.heroCTA {background: linear-gradient(120deg,#d53a2a,#f15330); border: 1px solid rgba(195,47,33,.45); font-weight: 750; box-shadow: 0 15px 35px rgba(72,21,12,.18);}
+.heroCTA:hover {background: linear-gradient(120deg,#bb3225,#de432a); box-shadow: 0 16px 34px rgba(115,30,12,.23);}
+.homeShortcut {position: absolute; top: clamp(18px,2vw,36px); right: clamp(18px,3vw,52px); z-index: 3; opacity: 0; transform: translateY(-14px); padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.7); background: rgba(255,255,255,.86); color: #1e2e32; backdrop-filter: blur(10px); box-shadow: 0 6px 24px rgba(0,0,0,.12); font-weight: 750; transition: opacity .85s ease,transform .85s ease,background .2s ease;}
+body.hero-content-ready[data-view="home"] .homeShortcut {opacity: 1; transform: translateY(0);}
+.homeShortcut:hover {background: white; transform: translateY(-2px);}
+.scheduleScroll {width: 100%; max-width: 100%; overflow-x: auto; overflow-y: visible; overscroll-behavior-x: contain; border-radius: 0 0 17px 17px; scrollbar-gutter: stable;}
+.schedule {min-width: 930px; width: 100%; grid-template-columns: 86px repeat(4,minmax(208px,1fr)); grid-template-rows: 86px 756px;}
+.roomHeader {position: relative; padding: 14px 20px; overflow: visible; z-index: 7; cursor: help; min-width: 0;}
+.roomHeader:hover {background: #f4f7fb;}
+.roomHeader:focus-visible {background: #f4f7fb;}
+.roomEquipment {position: absolute; top: calc(100% - 4px); left: 12px; display: flex; gap: 6px; flex-wrap: wrap; min-width: 178px; max-width: 240px; padding: 11px; border: 1px solid #dfe5eb; border-radius: 12px; background: #fff; box-shadow: 0 16px 36px rgba(17,26,40,.14); opacity: 0; visibility: hidden; transform: translateY(-8px); pointer-events: none; transition: opacity .18s ease,transform .18s ease,visibility .18s ease;}
+.roomEquipment span {font-size: 11px; font-weight: 650; padding: 5px 7px; border-radius: 6px; background: #eef2f7; color: #394c62;}
+.roomHeader:hover .roomEquipment {opacity: 1; visibility: visible; transform: translateY(0);}
+.roomHeader:focus-visible .roomEquipment {opacity: 1; visibility: visible; transform: translateY(0);}
+.freeWindow {position: absolute; left: 6px; right: 6px; border: 2px dashed #219565; border-radius: 9px; background: rgba(46,192,118,.12); pointer-events: none; z-index: 3; animation: freeFade .2s ease-out both;}
+.freeWindowLabel {display: inline-block; margin: 8px 5px 0; padding: 4px 7px; border-radius: 5px; background: #e3faed; color: #086743; font-size: 11px; font-weight: 800;}
+@@keyframes freeFade {from{opacity:0}to{opacity:1}}
+#quickOpen.is-active {background: #e3faed; border-color: #83d4a5; color: #096943;}
+.mineItem {grid-template-columns: minmax(110px,145px) minmax(180px,1fr) auto; gap: 18px; padding: 20px 22px;}
+.mineButtons {flex-wrap: wrap; justify-content: flex-end; max-width: 430px; gap: 7px;}
+.mineButtons .btn {padding: 0 11px; min-height: 36px;}
+.syncStatus {display: inline-flex; width: max-content; max-width: 100%; margin-top: 9px; padding: 5px 8px; background: #fff7e9; border: 1px solid #eedbc1; border-radius: 7px; color: #946332; font-size: 11px; font-weight: 700;}
+.emptyBooking {display: flex; flex-direction: column; align-items: center; gap: 18px; min-height: 250px; justify-content: center; background: #fcfdff;}
+.emptyBooking strong {font-size: 19px; color: #273449;}
+.emptyIcon {font-size: 45px; color: #aeb9c5;}
+.btn.orangeMini {background: #ea4b2b; color: white; border-color: #ea4b2b;}
+.appNavbar {display: grid; grid-template-columns: minmax(110px,1fr) auto minmax(170px,1fr); align-items: center; justify-content: initial; gap: 14px; top: 0;}
+.navHomeBack {justify-self: start; display: inline-flex; align-items: center; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 760; padding: 12px 10px; border-radius: 10px;}
+.navHomeBack:hover {background: rgba(0,0,0,.045);}
+.appNavbar .mainNav {position: static; left: auto; top: auto; transform: none; width: max-content; max-width: 100%; margin: auto; flex: initial; box-shadow: 0 6px 24px rgba(20,24,30,.055);}
+.appNavbar .navright {justify-self: end; margin-left: 0; min-width: 0;}
+.appNavbar .integrationPill {border-color: var(--line); background: rgba(255,255,255,.66);}
+.toolGroup {display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap;}
+.toolGroup #quickOpen {white-space: nowrap; min-height: 40px; flex-shrink: 0;}
+.toolGroup #quickOpen svg {width: 16px; height: 16px;}
+.immersiveBackdrop {transition: filter 3s cubic-bezier(.22,1,.36,1),opacity 3s cubic-bezier(.22,1,.36,1),transform 3s cubic-bezier(.22,1,.36,1);}
+.immersiveWash {transition: filter 3s cubic-bezier(.22,1,.36,1),opacity 3s cubic-bezier(.22,1,.36,1),transform 3s cubic-bezier(.22,1,.36,1);}
+body.hero-softened[data-view="home"] .immersiveBackdrop {filter: brightness(.85) saturate(.65) contrast(.93) blur(1px); transform: scale(1);}
+body.hero-softened[data-view="home"] .immersiveWash {opacity: .62;}
+header.navbar.appNavbar {z-index: 10;}
+.scheduleSurface {position: relative; overflow: visible; isolation: isolate;}
+.scheduleSurface .toolbar {position: relative; overflow: visible;}
+.scheduleSurface #calendarPopover {position: absolute; isolation: isolate;}
+.scheduleSurface .scheduleScroll {position: relative; z-index: 1;}
+.scheduleSurface .roomHeader {z-index: 6;}
+.scheduleSurface .roomEquipment {z-index: 20; pointer-events: none; transition: opacity .18s ease .14s,transform .18s ease .14s,visibility 0s linear .32s;}
+.scheduleSurface .roomHeader:hover .roomEquipment {transition-delay: .14s,.14s,.14s;}
+.scheduleSurface .roomHeader:focus-visible .roomEquipment {transition-delay: .14s,.14s,.14s;}
+.scheduleSurface.calendar-open .roomEquipment {transform: translateY(-8px) !important; transition: none !important;}
+.scheduleSurface.calendar-open .roomHeader:hover .roomEquipment {opacity: 0 !important; visibility: hidden !important; transform: translateY(-8px) !important; transition: none !important;}
+.scheduleSurface.calendar-open .roomHeader:focus-visible .roomEquipment {opacity: 0 !important; visibility: hidden !important; transform: translateY(-8px) !important; transition: none !important;}
+header.navbar.appNavbar {position: relative; top: auto;}
+.scheduleSurface .toolbar {z-index: 110;}
+.scheduleSurface #calendarPopover {z-index: 150;}
+.scheduleSurface .quickAnchor {position: relative; z-index: 120;}
+.scheduleSurface .quickPopover {position: absolute; right: 0; top: calc(100% + 12px); width: 290px; max-width: calc(100vw - 38px); z-index: 160; padding: 19px; border: 1px solid #e2e7ee; border-radius: 16px; background: #fff; box-shadow: 0 20px 60px rgba(20,32,45,.18); animation: popIn .18s ease both;}
+.quickPopoverTitle {font-size: 14px; font-weight: 800; margin-bottom: 14px;}
+.quickDurations {display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px;}
+.quickDurations button {padding: 12px 4px; background: #f6f7fa; color: #253347; border: 1px solid #e5e9ee; border-radius: 9px; font-weight: 700;}
+.quickDurations button.current {background: #fff3e8; border-color: #ff8b35; color: #ae4803;}
+.quickApply {width: 100%; background: #ef572a; border: 1px solid #ef572a; color: #fff; border-radius: 10px; min-height: 42px; font-weight: 800;}
+.quickDurationLabel {display: inline-flex; border-radius: 6px; padding: 3px 7px; background: #edf2f7; color: #526579; font-size: 11px; font-weight: 800; margin-left: 6px;}
+#quickOpen {display: inline-flex; align-items: center; gap: 6px;}
+.calendarHeading {border: 0; background: transparent; font-weight: 800; font-size: 15px; padding: 7px 4px; border-radius: 7px; color: var(--ink);}
+.calendarHeading:hover {background: #f1f5fa;}
+.calendarChoices {display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; min-height: 255px; align-content: start;}
+.calendarChoice {border: 1px solid #e3e9f2; background: #f8fafc; color: #2d3b4b; border-radius: 9px; min-height: 54px; font-weight: 750;}
+.calendarChoice:hover {background: #fff2e6; border-color: #ffbd84;}
+.calendarChoice.current {background: #e9f2ff; border-color: #9fc9ff; color: #245ba5;}
+.scheduleSurface.calendar-open .roomEquipment {opacity: 0 !important; visibility: hidden !important; pointer-events: none !important;}
+.scheduleSurface.quick-open .roomEquipment {opacity: 0 !important; visibility: hidden !important; pointer-events: none !important;}
+
+/* Immersive homepage — one explicit vertical flex layout; no Grid/Flex overrides. */
+body[data-view="home"] .page {width:100%;margin:0;}
+body[data-view="home"] .main {padding:0;}
+body[data-view="home"] .appNavbar {display:none;}
+.immersiveHome {position:relative;display:flex;align-items:stretch;justify-content:center;width:100%;max-width:100%;height:100svh;min-height:520px;overflow:hidden;padding:clamp(18px,3vw,50px);isolation:isolate;}
+.heroFrame {position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;width:100%;min-width:0;min-height:0;}
+.heroDock {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;flex:0 0 auto;max-width:100%;margin:0;padding-bottom:clamp(48px,9svh,110px);text-align:center;opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .85s ease;}
+.heroDock .heroMeta {display:block;margin:0;padding:0;color:rgba(255,255,255,.96);font-size:clamp(24px,2.5vw,32px);font-weight:680;line-height:1.35;letter-spacing:-.025em;text-shadow:0 2px 18px rgba(0,0,0,.42);opacity:1;transform:none;}
+.heroDock .heroCTA {flex-shrink:0;}
+body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
+.homeShortcut {z-index:3;}
+/* Google Workspace info belongs exclusively to the schedule footer. */
+.appFootbar {display:flex;justify-content:flex-end;align-items:center;min-height:70px;padding:18px clamp(18px,4vw,64px) 26px;}
+.appFootbar[hidden] {display:none;}
+.appFootbar .integrationPill {display:inline-flex;white-space:nowrap;}
+/* Keep the popover on top of schedule headers and equipment tooltips. */
+.scheduleSurface {position:relative;overflow:visible;isolation:isolate;}
+.scheduleSurface .toolbar {position:relative;z-index:110;overflow:visible;}
+.scheduleSurface #calendarPopover {position:absolute;z-index:150;}
+.scheduleSurface .quickAnchor {position:relative;z-index:120;}
+.scheduleSurface .quickPopover {z-index:160;}
+.scheduleSurface .scheduleScroll {position:relative;z-index:1;}
+.scheduleSurface.calendar-open .roomEquipment,
+.scheduleSurface.quick-open .roomEquipment {visibility:hidden;opacity:0;pointer-events:none;}
+
+/* Responsive */
+@media (max-width:800px) {
+  .page {width: calc(100% - 30px);}
+  .navbar {height: 69px;}
+  .titleRow {margin-top: 12px;}
+  .toolbar {padding: 12px;}
+  .dateTrigger {min-width: 0; font-size: 13px;}
+  .schedule {min-width: 795px;}
+  .calendarPopover {left: 8px;}
+  .titleRow h1 {font-size: 24px;}
+  .mineItem {grid-template-columns: 90px 1fr;}
+  .mineButtons {grid-column: 1/-1; justify-content: flex-end;}
+  .mineToolbar {gap: 8px;}
+}
+@media (max-width:520px) {
+  .page {width: calc(100% - 20px);}
+  .navbutton {min-height: 36px; padding: 0 9px; font-size: 12px;}
+  .navright {gap: 6px;}
+  .mark {width: 30px; height: 30px;}
+  .brand {font-size: 17px;}
+  .titleActions {gap: 6px;}
+  .toolbar {align-items: flex-start;}
+  .toolGroup {width: 100%; justify-content: flex-end;}
+  .titleRow {align-items: center;}
+  .titleRow h1 {font-size: 22px;}
+  .btn {min-height: 36px;}
+  .iconbtn {min-height: 36px;}
+  .dateTrigger {padding: 0 8px;}
+  .dateGroup {gap: 4px;}
+  .dialogHead {padding: 17px;}
+  .dialogContent {padding: 18px;}
+  .dialogFoot {padding: 14px 18px;}
+  .popShell {padding: 10px;}
+  .dialog {max-height: 92vh;}
+  .minePanel {padding: 12px;}
+  .mineItem {padding: 12px; gap: 9px;}
+  .mineToolbar .field {min-width: 0; flex: 1;}
+  .mineToolbar .select {min-width: 0; flex: 1;}
+  .mineButtons {justify-content: flex-start; flex-wrap: wrap;}
+}
+@media (max-width:1100px) {
+  .navbar {height: 90px;}
+  .page {width: calc(100% - 48px);}
+  .integrationPill {display: none;}
+}
+@media (max-width:700px) {
+  .page {width: calc(100% - 28px);}
+  .navbar {height: 125px; align-items: flex-start; padding-top: 16px;}
+  .wordmark {font-size: 21px;}
+  .mainNav {top: 76px; width: 100%; justify-content: center; box-shadow: none; padding: 3px;}
+  .navTab {padding: 0 17px; height: 36px; flex: 1;}
+  .navright {margin-left: auto;}
+  .ctaSmall {min-height: 38px; padding: 0 14px; font-size: 12px;}
+  .homeView {min-height: calc(100dvh - 145px);}
+  .heroDate {font-size: 10px;}
+  .heroCTA {min-height: 55px; padding: 0 21px; gap: 24px; font-size: 14px;}
+  .verticalType {font-size: 13px; letter-spacing: .1em;}
+  .heroBottom {font-size: 10px;}
+  .heroLine {width: 26px;}
+  .textCTA {font-size: 12px; gap: 8px;}
+}
+@media (max-width:390px) {
+  .navTab {padding: 0 9px; font-size: 12px;}
+  .wordmark {font-size: 19px;}
+  .heroDate {display: none;}
+}
+@media (max-width:900px) {
+  .heroCTA {font-size: 16px; padding: 15px 21px;}
+}
+@media (max-width:1050px) {
+  .schedule {min-width: 910px;}
+  .mineItem {grid-template-columns: 1fr; gap: 10px;}
+  .mineButtons {justify-content: flex-start; max-width: none;}
+}
+@media (max-width:720px) {
+  .homeShortcut {top: 20px; right: 20px;}
+  .scheduleScroll {scrollbar-gutter: auto;}
+  .schedule {min-width: 850px; grid-template-columns: 72px repeat(4,minmax(194px,1fr));}
+  .roomEquipment {min-width: 170px;}
+  .mineItem {padding: 16px;}
+  .mineButtons .btn {font-size: 12px;}
+}
+@media (max-width:900px) {
+  .appNavbar {grid-template-columns: auto 1fr; min-height: 80px; align-items: start; padding-top: 12px;}
+  .appNavbar .navHomeBack {grid-column: 1; grid-row: 1;}
+  .appNavbar .navright {grid-column: 2; grid-row: 1;}
+  .appNavbar .mainNav {grid-column: 1/-1; grid-row: 2; justify-self: center; margin: 0 auto; max-width: 100%; width: max-content;}
+  .appNavbar .mainNav .navTab {flex: 0 1 auto;}
+}
+@media (max-width:580px) {
+  .toolGroup {width: 100%; justify-content: flex-start; gap: 6px;}
+  .toolGroup #quickOpen {padding-inline: 10px; font-size: 12px;}
+  .toolGroup .minor {font-size: 12px;}
+  .appNavbar .navright .integrationPill {font-size: 11px; min-height: 34px; padding-inline: 9px;}
+  .scheduleSurface .quickPopover {right: -44px;}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce) {
+  * {animation: none !important; transition: none !important; scroll-behavior: auto !important;}
+  *:before {animation: none !important; transition: none !important; scroll-behavior: auto !important;}
+  *:after {animation: none !important; transition: none !important; scroll-behavior: auto !important;}
+  .freeWindow {animation: none; transition: none;}
+  .homeShortcut {animation: none; transition: none;}
+  .immersiveBackdrop {transition: none;}
+  .immersiveWash {transition: none;}
+  .scheduleSurface .quickPopover {animation: none;}
+}
+@media (max-width:700px) {
+  .immersiveHome {padding:20px;}
+  .heroDock {padding-bottom:clamp(68px,12svh,118px);}
+  .appFootbar {padding-inline:14px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .heroDock {transition:none;transform:none;}
+}
+

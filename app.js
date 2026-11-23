@@ -41,7 +41,7 @@ function renderHomeClock(){
  root.querySelector('.heroClockMain').textContent=hm;
  root.querySelector('.heroClockSeconds').textContent=sec;
 }
-setInterval(()=>{if(document.body.dataset.view==='home'){renderHomeClock();renderHome()}},1000);
+// Update the clock each second; refresh status cards only when the minute changes.\nlet lastStatusMinute='';\nsetInterval(()=>{if(document.body.dataset.view!=='home')return;renderHomeClock();const minuteKey=todayISO()+'-'+new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());if(minuteKey!==lastStatusMinute){lastStatusMinute=minuteKey;renderHome()}},1000);
 // Homepage status uses the existing local schedule data until Calendar sync is enabled.
 function renderHome(){
  renderHomeClock();

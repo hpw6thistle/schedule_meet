@@ -1,4 +1,3 @@
-
 /* V13 consolidated stylesheet. Responsive modifiers follow component rules. */
 :root {--paper: #fff;}
 * {box-sizing: border-box;}
@@ -435,4 +434,3 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce) {
   .heroDock {transition:none;transform:none;}
 }
-

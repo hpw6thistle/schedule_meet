@@ -543,3 +543,21 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 
 /* v2.0.4: ensure the hidden homepage availability list stays hidden despite layout styles */
 #todayRooms[hidden]{display:none!important}
+
+/* v2.0.5 — mobile popovers stay within the viewport, regardless of trigger position */
+@media(max-width:700px){
+ .scheduleSurface .quickPopover{
+  position:fixed!important;top:clamp(90px,20svh,210px)!important;
+  left:16px!important;right:16px!important;width:auto!important;
+  max-width:none!important;max-height:calc(100dvh - 110px);
+  overflow-y:auto;box-sizing:border-box;z-index:1000;
+ }
+ .scheduleSurface #calendarPopover{
+  position:fixed!important;top:clamp(90px,18svh,180px)!important;
+  left:16px!important;right:16px!important;width:auto!important;
+  max-width:none!important;max-height:calc(100dvh - 110px);
+  overflow-y:auto;box-sizing:border-box;z-index:1000;
+ }
+ .scheduleSurface .quickDurations{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .scheduleSurface .quickDurations button{min-width:0}
+}

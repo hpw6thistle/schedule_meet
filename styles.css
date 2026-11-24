@@ -136,8 +136,13 @@ button:active:not(:disabled) {transform: scale(.985);}
 html {background: #f8f8f7;}
 body {background: transparent; transition: background-color .45s ease;}
 body:before {background: #f8f8f7; transition: background-color .5s ease;}
-body[data-view="schedule"]:before {background: #f6f6f4;}
-body[data-view="mine"]:before {background: #f6f6f4;}
+body[data-view="schedule"]:before,
+body[data-view="mine"]:before {
+  background: linear-gradient(rgba(247,247,243,.76),rgba(247,247,243,.76)), url("assets/hero.jpg") center 56% / cover no-repeat;
+  background-color: #f6f6f4;
+  animation: none;
+  transition: none;
+}
 .navbar {height: 111px; position: relative; z-index: 12; justify-content: space-between;}
 .wordmark {font-size: 23px; font-weight: 850; letter-spacing: -1.15px; color: #141716;}
 .wordmarkDot {color: var(--brand);}

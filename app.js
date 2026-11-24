@@ -41,11 +41,13 @@ function renderHomeClock(){
  root.querySelector('.heroClockMain').textContent=hm;
  root.querySelector('.heroClockSeconds').textContent=sec;
 }
-// Update the clock each second; refresh status cards only when the minute changes.\nlet lastStatusMinute='';\nsetInterval(()=>{if(document.body.dataset.view!=='home')return;renderHomeClock();const minuteKey=todayISO()+'-'+new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());if(minuteKey!==lastStatusMinute){lastStatusMinute=minuteKey;renderHome()}},1000);
+// Update the clock each second; refresh status cards only when the minute changes.
+let lastStatusMinute='';
+setInterval(()=>{if(document.body.dataset.view!=='home')return;renderHomeClock();const minuteKey=todayISO()+'-'+new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());if(minuteKey!==lastStatusMinute){lastStatusMinute=minuteKey;renderHome()}},1000);
 // Homepage status uses the existing local schedule data until Calendar sync is enabled.
 function renderHome(){
  renderHomeClock();
- const list=$('todayRoomsList');
+ const list=$('todayRoomsList'),cta=$('heroMinePrimary');
  list.querySelectorAll('.todayRoomChip').forEach(card=>card.remove());
  const current=nowSlot(),date=todayISO(),events=sameDay(date);
  for(const room of ROOMS){
@@ -55,16 +57,16 @@ function renderHome(){
   const name=document.createElement('span');name.className='todayRoomName';name.textContent=room.name;
   const status=document.createElement('span');status.className='todayRoomStatus';
   const dot=document.createElement('span');dot.className='todayRoomDot'+(active?' isBusy':' isFree');dot.setAttribute('aria-hidden','true');
-  const label=document.createElement('span');label.textContent=active?'使用中':'空閒中';status.append(dot,label);
+  const label=active?'使用中':'空閒中';status.append(dot);
   const detail=document.createElement('span');detail.className='todayRoomDetail';
   if(current<0)detail.textContent='09:00 開始可預約';
   else if(current>=18)detail.textContent='今日排程已結束';
   else if(active)detail.textContent=nextFree<18?toTime(nextFree)+' 後有空':'今日時段已滿';
   else detail.textContent='可立即查看時段';
   card.append(name,status,detail);
-  card.setAttribute('aria-label',room.name+'，'+label.textContent+'，'+detail.textContent+'（示範資料）');
-  card.addEventListener('click',()=>{state.mobileRoom=room.id;setDate(date);setView('schedule')});
-  list.append(card);
+  card.setAttribute('aria-label',room.name+'，'+label+'，'+detail.textContent+'（示範資料）');
+  card.addEventListener('click',()=>{state.mobileRoom=room.id;setDate(date);setView('schedule');const header=document.querySelector('.roomHeader[data-mobile-room="'+room.id+'"]');if(header){header.focus({preventScroll:true});const scroll=$('scheduleScroll');if(scroll.scrollWidth>scroll.clientWidth)scroll.scrollLeft=Math.max(0,header.offsetLeft-58)}});
+  list.insertBefore(card,cta);
  }
 }
 function renderRoomOptions(){

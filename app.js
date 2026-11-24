@@ -1,5 +1,5 @@
 'use strict';
-const $=id=>document.getElementById(id),ROOMS=[{id:'3s',name:'3F 小會議室',desc:'4 人',equipment:['白板','視訊']},{id:'3l',name:'3F 大會議室',desc:'12 人',equipment:['投影機','白板','視訊']},{id:'6f',name:'6F 會議室',desc:'4 人',equipment:['投影機','白板','視訊']},{id:'7s',name:'7F 會議室－玻璃門',desc:'6 人',equipment:['投影機','白板','視訊']},{id:'7l',name:'7F 會議室－石材門',desc:'6 人',equipment:['投影機','白板','視訊']}];
+const $=id=>document.getElementById(id),ROOMS=[{id:'3s',name:'3F 小會議室',desc:'4 人',equipment:['白板','視訊']},{id:'3l',name:'3F 大會議室',desc:'12 人',equipment:['投影機','白板','視訊']},{id:'6f',name:'6F 會議室',desc:'4 人',equipment:['投影機','白板','視訊']},{id:'7s',name:'7F 會議室(玻)',desc:'6 人',equipment:['投影機','白板','視訊']},{id:'7l',name:'7F 會議室(石)',desc:'6 人',equipment:['投影機','白板','視訊']}];
 const DEPTS={joint:'聯訂',hr:'人事部',legal:'法務部',finance:'財務部',planning:'企劃部',management:'管理部',it:'資訊部',procurement:'採購部',renewal:'都更部',leasing:'招商部',rd:'研發部',advertising:'廣告部',design:'設計部',general:'總務部',secretariat:'秘書部',acceptance:'驗收部',building85:'85大樓',construction:'建設部'};
 const TZ='Asia/Taipei',STORAGE='roomly_v3_bookings';
 const storage=(()=>{try{let k='__roomly_check';localStorage.setItem(k,'1');localStorage.removeItem(k);return localStorage}catch{return{getItem:()=>null,setItem:()=>{}}}})();

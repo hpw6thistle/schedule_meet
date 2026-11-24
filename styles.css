@@ -138,8 +138,7 @@ body {background: transparent; transition: background-color .45s ease;}
 body:before {background: #f8f8f7; transition: background-color .5s ease;}
 body[data-view="schedule"]:before,
 body[data-view="mine"]:before {
-  background: linear-gradient(rgba(247,247,243,.76),rgba(247,247,243,.76)), url("assets/hero.jpg") center 56% / cover no-repeat;
-  background-color: #f6f6f4;
+  background: #e8edf2;
   animation: none;
   transition: none;
 }

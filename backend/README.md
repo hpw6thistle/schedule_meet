@@ -37,3 +37,9 @@ Current `doPost` and `doGet` deliberately return a disabled response. No employe
 ## Frontend release safety
 
 The current GitHub Pages frontend continues using `localStorage` simulation until an authenticated backend is integrated and end-to-end tested. Never present localStorage bookings as real cross-user availability.
+
+## v2.1.0 test foundation
+
+Create a separate Apps Script project, private spreadsheet and five distinct test calendars. Set APP_ENV=TEST and the existing six ID properties. Set all timezones to Asia/Taipei. Run verifyTestConnections manually as owner, then initializeStorage. Neither function should be exposed through a public deployment. The connectivity check is read-only and does not establish write permission. Initialization preserves existing rows and rejects unexpected headers; employee IDs are formatted as text for future entry. Do not use production IDs in this project.
+
+Employees adds emailVerifiedAt, createdAt and updatedAt. OTP, Sessions, EmailRequests, Preferences and Requests are schema placeholders only; authentication, enrollment approval, token handling and notification logic are not yet implemented. New employees may be added by the manager as rows. Unregistered email addresses require manager approval before OTP enrollment. Public endpoints remain disabled. Do not deploy yet.

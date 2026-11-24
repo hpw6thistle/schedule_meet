@@ -266,7 +266,7 @@ header.navbar.appNavbar {z-index: 10;}
 .scheduleSurface #calendarPopover {position: absolute; isolation: isolate;}
 .scheduleSurface .scheduleScroll {position: relative; z-index: 1;}
 .scheduleSurface .roomHeader {z-index: 6;}
-.schedule > .roomHeader:last-of-type, .schedule > .lane:last-child {border-right:0;}
+.schedule > .roomHeader:has(+ .axis), .schedule > .lane:last-child {border-right:0;}
 .scheduleSurface .roomEquipment {z-index: 20; pointer-events: none; transition: opacity .18s ease .14s,transform .18s ease .14s,visibility 0s linear .32s;}
 .scheduleSurface .roomHeader:hover .roomEquipment {transition-delay: .14s,.14s,.14s;}
 .scheduleSurface .roomHeader:focus-visible .roomEquipment {transition-delay: .14s,.14s,.14s;}
@@ -639,7 +639,7 @@ body[data-view="home"] .heroCTA::after{content:"↗";font-size:.9em}
 body[data-view="home"] .heroCTA:hover{background:#e8edf2;color:#1e293b;transform:translateY(-3px);box-shadow:0 15px 32px rgba(0,0,0,.4)}
 body[data-view="home"] .heroCTA:focus-visible,body[data-view="home"] .todayRoomChip:focus-visible{outline:3px solid #fff;outline-offset:2px}
 body[data-view="home"] .heroDock .todayRooms{position:absolute;inset:auto 0 clamp(24px,6svh,56px);transform:none;width:min(800px,calc(100% - 48px));max-width:100%;margin:0 auto;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.24);text-shadow:none}
-body[data-view="home"] .todayRoomsList{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;width:100%;max-width:100%;max-height:none;overflow:visible}
+body[data-view="home"] .todayRoomsList{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:100%;max-height:none;overflow:visible}
 body[data-view="home"] .todayRoomChip{display:grid;grid-template-columns:12px minmax(0,1fr) 9px;grid-template-rows:auto auto;align-content:center;align-items:center;column-gap:8px;row-gap:3px;width:100%;min-width:0;height:56px;min-height:56px;padding:7px 12px;text-align:left;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(28,28,28,.56);color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 18px rgba(0,0,0,.16);transition:background-color .2s ease,opacity .2s ease,transform .2s ease}
 body[data-view="home"] .todayRoomChip:hover{background:rgba(20,20,20,.75)}
 body[data-view="home"] .todayRoomChip:active{transform:scale(.98)}
@@ -669,7 +669,7 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
  body[data-view="home"] .todayRoomChip:nth-child(5){grid-column:4 / span 2}
  body[data-view="home"] .todayRoomChip.isUnavailable{opacity:1}
  body[data-view="home"] .todayRoomStatus{position:absolute;inset:0 auto 0 0;margin:0;width:5px;height:100%}
- body[data-view="home"] .todayRoomDot{width:5px;height:100%;border-radius:0;box-shadow:none}
+ body[data-view="home"] .todayRoomDot,body[data-view="home"] .todayRoomDot.isBusy,body[data-view="home"] .todayRoomDot.isClosed{width:5px;height:100%;border-radius:0;box-shadow:none}
  body[data-view="home"] .todayRoomName{grid-column:1;font-size:clamp(15px,1.2vw,21px);white-space:normal;overflow:visible}
  body[data-view="home"] .todayRoomDetail{grid-column:1;font-size:clamp(12px,.95vw,16px);white-space:normal;overflow:visible}
  body[data-view="home"] .todayRoomChip::after{grid-column:2}

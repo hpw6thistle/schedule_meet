@@ -145,8 +145,8 @@ body[data-view="mine"]:before {background: #f6f6f4;}
 .navTab {border:0;border-bottom:2px solid transparent;background:none;color:inherit;border-radius:0;height:40px;padding:0 18px;font-weight:690;font-size:17px;white-space:nowrap;}
 .navTab:hover {background: #f5f4f1;}
 .navTab.current {background:transparent;color:inherit;border-bottom-color:currentColor;}
-.navCount {display: inline-flex; justify-content: center; align-items: center; margin-left: 3px; font-size: 11px; min-width: 18px; height: 18px; border-radius: 50%; background: #eae9e5; color: #4a4a47;}
-.navTab.current .navCount {background: #555; color: white;}
+.navCount {display: inline-flex; justify-content: center; align-items: center; margin-left: 3px; font-size: 11px; min-width: 18px; height: 18px; border-radius: 50%; background: #fce8e1; color: rgb(239, 87, 42);}
+.navTab.current .navCount {background: rgb(239, 87, 42); color: white;}
 .navright {gap: 9px;}
 .integrationPill {background: transparent; border-color: transparent; border-radius: 999px; font-weight: 550;}
 .integrationPill:hover {background: white; border-color: #e7e5e2;}
@@ -276,8 +276,8 @@ header.navbar.appNavbar {z-index: 10;}
 header.navbar.appNavbar {position: relative; top: auto;}
 .scheduleSurface .toolbar {z-index: 110;}
 .scheduleSurface #calendarPopover {z-index: 150;}
-#scheduleView .quickAnchor {position: relative; z-index: 120;}
-#scheduleView .quickPopover {position: absolute; right: 0; top: calc(100% + 12px); width: 290px; max-width: calc(100vw - 38px); z-index: 160; padding: 19px; border: 1px solid #e2e7ee; border-radius: 16px; background: #fff; box-shadow: 0 20px 60px rgba(20,32,45,.18); animation: popIn .18s ease both;}
+.navtool .quickAnchor {position: relative; z-index: 120;}
+.navtool .quickPopover {position: absolute; right: 0; top: calc(100% + 12px); width: 290px; max-width: calc(100vw - 38px); z-index: 160; padding: 19px; border: 1px solid #e2e7ee; border-radius: 16px; background: #fff; box-shadow: 0 20px 60px rgba(20,32,45,.18); animation: popIn .18s ease both;}
 .quickPopoverTitle {font-size: 14px; font-weight: 800; margin-bottom: 14px;}
 .quickDurations {display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px;}
 .quickDurations button {padding: 12px 4px; background: #f6f7fa; color: #253347; border: 1px solid #e5e9ee; border-radius: 9px; font-weight: 700;}
@@ -314,8 +314,8 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 .scheduleSurface {position:relative;overflow:visible;isolation:isolate;}
 .scheduleSurface .toolbar {position:relative;z-index:110;overflow:visible;}
 .scheduleSurface #calendarPopover {position:absolute;z-index:150;}
-#scheduleView .quickAnchor {position:relative;z-index:120;}
-#scheduleView .quickPopover {z-index:160;}
+.navtool .quickAnchor {position:relative;z-index:120;}
+.navtool .quickPopover {z-index:160;}
 .scheduleSurface .scheduleScroll {position:relative;z-index:1;}
 .scheduleSurface.calendar-open .roomEquipment,
 .scheduleSurface.quick-open .roomEquipment {visibility:hidden;opacity:0;pointer-events:none;}
@@ -414,7 +414,7 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
   .toolGroup #quickOpen {padding-inline: 10px; font-size: 12px;}
   .toolGroup .minor {font-size: 12px;}
   .appNavbar .navright .integrationPill {font-size: 11px; min-height: 34px; padding-inline: 9px;}
-  #scheduleView .quickPopover {right: -44px;}
+  .navtool .quickPopover {right: -44px;}
 }
 
 /* Reduced motion */
@@ -426,7 +426,7 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
   .homeShortcut {animation: none; transition: none;}
   .immersiveBackdrop {transition: none;}
   .immersiveWash {transition: none;}
-  #scheduleView .quickPopover {animation: none;}
+  .navtool .quickPopover {animation: none;}
 }
 @media (max-width:700px) {
   .immersiveHome {padding:20px;}
@@ -511,7 +511,7 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 
 /* v2.0.5 — mobile popovers stay within the viewport, regardless of trigger position */
 @media(max-width:700px){
- #scheduleView .quickPopover{
+ .navtool .quickPopover{
   position:fixed!important;top:clamp(90px,20svh,210px)!important;
   left:16px!important;right:16px!important;width:auto!important;
   max-width:none!important;max-height:calc(100dvh - 110px);
@@ -644,15 +644,9 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 #repeatWeekdays[hidden],#repeatMonthField[hidden],#repeatExtra[hidden]{display:none}
 #repeatWeekdays{gap:8px}
 #scheduleView #prevDay,#scheduleView #nextDay,#scheduleView #todayBtn{display:none}
-#scheduleView .titleRow{position:relative;z-index:121}
-#scheduleView .titleRow .toolGroup{width:auto;flex:0 1 auto;min-width:0}
-#scheduleView .titleRow .quickAnchor{width:auto;min-width:0}
-#scheduleView .titleRow .quickPopover{right:0;max-width:calc(100vw - 32px)}
-@media(max-width:700px){#scheduleView .titleRow{flex-wrap:wrap;gap:10px}#scheduleView .titleRow .toolGroup{margin-left:auto}#scheduleView .titleRow #quickOpen{width:auto;white-space:nowrap}}
-
+@media(max-width:700px){
 
 /* Monthly overview: reuse department colors without daily timeline positioning. */
-#scheduleView .titleRow,#mineView .titleRow{justify-content:flex-end}
 #monthViewToggle[aria-pressed="true"]{background:#e9eef5;border-color:#aebdce}
 .monthlyNav{display:flex;align-items:center;justify-content:center;gap:18px;padding:12px}
 .monthlyScroll{overflow-x:auto}
@@ -669,3 +663,12 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 .monthlyScroll{max-width:100%;min-width:0;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
 .monthlyRoomFilter{margin-left:auto;max-width:100%}
 @media(max-width:700px){#monthViewToggle{flex:none;padding-inline:10px}.monthlyGrid{min-width:980px}.monthlyRoomFilter{align-self:flex-end;width:auto}.monthlyCell .monthlyEvent.event{min-height:36px;font-size:12px}.monthlyDate.btn{min-height:40px}.month-mode{min-width:0;max-width:100%}}
+
+/* Shared navigation and equal panel top edges. */
+.appNavbar .navtool{grid-column:3;grid-row:1;justify-self:end;min-width:0;max-width:100%}
+.appNavbar .navtool[hidden]{display:none}
+.appNavbar .navtool .toolGroup,.appNavbar .navtool .quickAnchor{width:auto;min-width:0}
+.appNavbar .navtool #quickOpen{width:auto;white-space:nowrap}
+.appNavbar .navtool .quickPopover{right:0;max-width:calc(100vw - 32px)}
+#scheduleView,#mineView{margin-top:0;padding-top:0}
+@media(max-width:900px){.appNavbar{grid-template-columns:auto minmax(0,1fr);grid-template-rows:40px 40px;height:110px;align-items:center;gap:8px;padding-top:8px}.appNavbar .navHomeBack{grid-column:1;grid-row:1}.appNavbar .navtool{grid-column:2;grid-row:1}.appNavbar .mainNav{grid-column:1/-1;grid-row:2;justify-self:center;margin:0 auto}.appNavbar .navtool #quickOpen{font-size:12px;padding-inline:8px}}

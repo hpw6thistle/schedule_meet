@@ -45,8 +45,8 @@ function renderHomeClock(){
 // Homepage status uses the existing local schedule data until Calendar sync is enabled.
 function renderHome(){
  renderHomeClock();
- const root=$('todayRooms');root.replaceChildren();
- const list=document.createElement('div');list.className='todayRoomsList';
+ const list=$('todayRoomsList'),cta=$('heroMinePrimary');
+ list.querySelectorAll('.todayRoomChip').forEach(card=>card.remove());
  const current=nowSlot(),date=todayISO(),events=sameDay(date);
  for(const room of ROOMS){
   const active=current>=0&&current<18&&events.some(e=>e.room===room.id&&e.start<=current&&current<e.end);
@@ -64,9 +64,8 @@ function renderHome(){
   card.append(name,status,detail);
   card.setAttribute('aria-label',room.name+'，'+label.textContent+'，'+detail.textContent+'（示範資料）');
   card.addEventListener('click',()=>{state.mobileRoom=room.id;setDate(date);setView('schedule')});
-  list.append(card);
+  list.insertBefore(card,cta);
  }
- root.append(list);
 }
 function renderRoomOptions(){
  const select=$('mineRoom'),chosen=select.value;select.replaceChildren();

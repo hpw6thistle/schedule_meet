@@ -36,34 +36,42 @@ function renderHomeClock(){
  const now=new Date(),parts=clockTimeFormat.formatToParts(now);
  const get=type=>parts.find(p=>p.type===type)?.value||'00';
  const dp=clockDateFormat.formatToParts(now),dget=t=>dp.find(p=>p.type===t)?.value||'';
- const date=dget('year')+'年'+dget('month')+'月'+dget('day')+'日　'+dget('weekday'),hm=get('hour')+':'+get('minute'),sec=':'+get('second');
- if(root.dataset.date!==date){root.replaceChildren();const d=document.createElement('span');d.className='heroClockDate';d.textContent=date;const row=document.createElement('span');row.className='heroClockTime';const main=document.createElement('span');main.className='heroClockMain';const seconds=document.createElement('span');seconds.className='heroClockSeconds';row.append(main,seconds);root.append(d,row);root.dataset.date=date}
+ const date=dget('year')+'年'+dget('month')+'月'+dget('day')+'日　'+dget('weekday'),hm=get('hour')+':'+get('minute');
+ if(root.dataset.date!==date){root.replaceChildren();const d=document.createElement('span');d.className='heroClockDate';d.textContent=date;const row=document.createElement('span');row.className='heroClockTime';const main=document.createElement('span');main.className='heroClockMain';row.append(main);root.append(d,row);root.dataset.date=date}
  root.querySelector('.heroClockMain').textContent=hm;
- root.querySelector('.heroClockSeconds').textContent=sec;
 }
-// Update the clock each second; refresh status cards only when the minute changes.\nlet lastStatusMinute='';\nsetInterval(()=>{if(document.body.dataset.view!=='home')return;renderHomeClock();const minuteKey=todayISO()+'-'+new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());if(minuteKey!==lastStatusMinute){lastStatusMinute=minuteKey;renderHome()}},1000);
+// Update the clock each second; refresh status cards only when the minute changes.
+let lastStatusMinute='';
+setInterval(()=>{if(document.body.dataset.view!=='home')return;renderHomeClock();const minuteKey=todayISO()+'-'+new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());if(minuteKey!==lastStatusMinute){lastStatusMinute=minuteKey;renderHome()}},1000);
 // Homepage status uses the existing local schedule data until Calendar sync is enabled.
 function renderHome(){
  renderHomeClock();
  const list=$('todayRoomsList');
  list.querySelectorAll('.todayRoomChip').forEach(card=>card.remove());
  const current=nowSlot(),date=todayISO(),events=sameDay(date);
+ const [hour,minute]=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date()).split(':').map(Number),live=(hour-9)*2+minute/30;
  for(const room of ROOMS){
-  const active=current>=0&&current<18&&events.some(e=>e.room===room.id&&e.start<=current&&current<e.end);
-  const nextFree=active?Math.min(18,Math.max(...events.filter(e=>e.room===room.id&&e.start<=current&&current<e.end).map(e=>e.end))):null;
+  const active=live>=0&&live<18&&events.some(e=>e.room===room.id&&e.start<=live&&live<e.end);
+  const nextFree=Array.from({length:18},(_,i)=>i).find(i=>i>=Math.max(0,current)&&canBook(date,room.id,i,i+1));
   const card=document.createElement('button');card.type='button';card.className='todayRoomChip';
   const name=document.createElement('span');name.className='todayRoomName';name.textContent=room.name;
   const status=document.createElement('span');status.className='todayRoomStatus';
   const dot=document.createElement('span');dot.className='todayRoomDot'+(active?' isBusy':' isFree');dot.setAttribute('aria-hidden','true');
-  const label=document.createElement('span');label.textContent=active?'使用中':'空閒中';status.append(dot,label);
+  const label=active?'使用中':'空閒中';status.append(dot);
   const detail=document.createElement('span');detail.className='todayRoomDetail';
-  if(current<0)detail.textContent='09:00 開始可預約';
-  else if(current>=18)detail.textContent='今日排程已結束';
-  else if(active)detail.textContent=nextFree<18?toTime(nextFree)+' 後有空':'今日時段已滿';
-  else detail.textContent='可立即查看時段';
+  if(live>=18)detail.textContent='今日排程已結束';
+  else if(nextFree===undefined)detail.textContent='今日時段已滿';
+  else if(live<0||active||nextFree>current)detail.textContent=toTime(nextFree)+' 後可使用';
+  else detail.textContent='可立即使用';
   card.append(name,status,detail);
-  card.setAttribute('aria-label',room.name+'，'+label.textContent+'，'+detail.textContent+'（示範資料）');
-  card.addEventListener('click',()=>{state.mobileRoom=room.id;setDate(date);setView('schedule')});
+  card.setAttribute('aria-label',room.name+'，'+label+'，'+detail.textContent+'（示範資料）');
+  card.addEventListener('click',()=>{
+   state.mobileRoom=room.id;let targetDate=todayISO(),start,duration=state.duration;
+   for(let day=0;day<40&&start===undefined;day++){const ds=plusDays(todayISO(),day);for(let i=0;i<18;i++){if(canBook(ds,room.id,i,i+duration)){targetDate=ds;start=i;break}}}
+   setDate(targetDate);setView('schedule');
+   if(start===undefined){showMessage('預約會議','此會議室近期沒有符合所選時長的空檔，請調整日期或時長。');return}
+   openBooking({date:targetDate,room:room.id,start,duration});
+  });
   list.append(card);
  }
 }

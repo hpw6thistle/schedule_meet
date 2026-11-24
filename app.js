@@ -38,7 +38,12 @@ function renderHomeClock(){
  const dp=clockDateFormat.formatToParts(now),dget=t=>dp.find(p=>p.type===t)?.value||'';
  const date=dget('year')+'年'+dget('month')+'月'+dget('day')+'日（'+dget('weekday').replace('星期','')+'）',hm=get('hour')+':'+get('minute');
  if(root.dataset.date!==date){root.replaceChildren();const d=document.createElement('span');d.className='heroClockDate';d.textContent=date;const row=document.createElement('span');row.className='heroClockTime';const main=document.createElement('span');main.className='heroClockMain';row.append(main);root.append(d,row);root.dataset.date=date}
- root.querySelector('.heroClockMain').textContent=hm;
+ const main=root.querySelector('.heroClockMain');
+ if(main.textContent!==hm)main.textContent=hm;
+ if(window.matchMedia('(max-width:767.98px)').matches){
+  const width=main.offsetWidth,dateWidth=root.querySelector('.heroClockDate').getBoundingClientRect().width;
+  if(width&&dateWidth)main.style.setProperty('--clock-width-ratio',String(dateWidth/width));
+ }
 }
 // Update the clock each second; refresh status cards only when the minute changes.
 let lastStatusMinute='';

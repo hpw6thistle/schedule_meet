@@ -26,7 +26,7 @@ function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearTime
 function clearHomeIntro(){state.homeTimers.forEach(clearTimeout);state.homeTimers=[];document.body.classList.remove('hero-content-ready','hero-softened')}
 function playHomeIntro(force=false){if(state.homeIntroPlayed&&!force){document.body.classList.add('hero-content-ready','hero-softened');return}clearHomeIntro();state.homeTimers.push(setTimeout(()=>document.body.classList.add('hero-content-ready'),320));state.homeTimers.push(setTimeout(()=>document.body.classList.add('hero-softened'),1700));state.homeIntroPlayed=true}
 const b=(label,fn,kind='')=>{let x=document.createElement('button');x.className='btn '+kind;x.type='button';x.textContent=label;x.onclick=fn;return x};
-function setCalendarOpen(open){const popup=$('calendarPopover');popup.hidden=!open;$('dateTrigger').setAttribute('aria-expanded',String(open));document.querySelector('.scheduleSurface').classList.toggle('calendar-open',open);if(open){setQuickOpen(false);state.calendarMode='day';renderCalendar()}}
+function setCalendarOpen(open){const popup=$('calendarPopover');popup.hidden=!open;$('dateTrigger').setAttribute('aria-expanded',String(open));document.querySelector('.scheduleSurface').classList.toggle('calendar-open',open);if(open){setQuickOpen(false);state.month=state.date.slice(0,7);state.calendarMode='day';renderCalendar()}}
 function setDate(ds){state.date=ds;state.month=ds.slice(0,7);setCalendarOpen(false);renderSchedule()}
 function setView(view){if(!['home','schedule','mine'].includes(view))view='home';if(view!=='schedule'){if(!$('calendarPopover').hidden)setCalendarOpen(false);if(!$('quickPopover').hidden)setQuickOpen(false)}state.view=view;$('navtool').hidden=view!=='schedule'||state.scheduleMode==='month';document.body.dataset.view=view;$('homeView').hidden=view!=='home';$('scheduleView').hidden=view!=='schedule';$('mineView').hidden=view!=='mine';$('integrationFooter').hidden=view!=='schedule';for(const [id,key] of [['navHome','home'],['navSchedule','schedule'],['topMine','mine']]){const el=$(id);el.classList.toggle('current',view===key);if(view===key)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')}if(view==='mine'){clearHomeIntro();renderMine()}else if(view==='schedule'){clearHomeIntro();renderSchedule()}else{renderHome();playHomeIntro()}window.scrollTo({top:0,behavior:'instant'});if(location.hash!=='#'+view)history.replaceState(null,'','#'+view)}
 const clockDateFormat=new Intl.DateTimeFormat('zh-TW',{timeZone:TZ,year:'numeric',month:'long',day:'numeric',weekday:'long'});
@@ -121,7 +121,7 @@ function renderCalendar(){
     heading.textContent=`${y} 年 ▾`;heading.setAttribute('aria-label','選擇年份');
     for(let month=1;month<=12;month++){
       const selected=month===m;
-      const cell=b(`${month} 月`,()=>{const day=Number(state.date.slice(-2));const last=new Date(Date.UTC(y,month,0)).getUTCDate();const requested=iso(y,month,Math.min(day,last));setDate(requested<todayISO()?todayISO():requested)});
+      const cell=b(`${month} 月`,()=>{state.month=iso(y,month,1).slice(0,7);state.calendarMode='day';renderCalendar()});
       cell.className='calendarChoice'+(selected?' current':'');root.append(cell)
     }
     return

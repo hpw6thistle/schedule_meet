@@ -14,7 +14,7 @@ const CONFIG = Object.freeze({
   }),
   timezone: 'Asia/Taipei'
 });
-const EMPLOYEE_COLUMNS = ['employeeId','department','displayName','workEmail','active'];
+const EMPLOYEE_COLUMNS = ['employeeId','department','displayName','workEmail','active','emailVerifiedAt','createdAt','updatedAt'];
 const AUDIT_COLUMNS = ['timestamp','action','employeeId','bookingId','roomId','details'];
 const BOOKING_COLUMNS = ['bookingId','employeeId','roomId','title','notes','startIso','endIso','calendarEventId','status','createdAt','updatedAt'];
 
@@ -24,15 +24,57 @@ function spreadsheet_(){
   return SpreadsheetApp.openById(id);
 }
 function sheet_(name,headers){
-  const ss=spreadsheet_();let sheet=ss.getSheetByName(name);
-  if(!sheet){sheet=ss.insertSheet(name);sheet.getRange(1,1,1,headers.length).setValues([headers]);sheet.setFrozenRows(1)}
+  const ss=spreadsheet_();
+  let sheet=ss.getSheetByName(name);
+  if(!sheet)sheet=ss.insertSheet(name);
+  const count=sheet.getLastColumn();
+  const existing=count?sheet.getRange(1,1,1,count).getValues()[0]:[];
+  if(existing.length>headers.length||existing.some((value,i)=>value!==headers[i]))throw new Error('Unexpected schema: '+name);
+  if(existing.length<headers.length)sheet.getRange(1,existing.length+1,1,headers.length-existing.length).setValues([headers.slice(existing.length)]);
+  sheet.setFrozenRows(1);
   return sheet;
 }
-/** Run manually once as the owner. Never publish the employee sheet. */
+const EXTRA_SCHEMAS=Object.freeze({
+  OTP:['challengeId','employeeId','codeDigest','expiresAt','attempts','usedAt','createdAt'],
+  Sessions:['tokenDigest','employeeId','expiresAt','revokedAt','createdAt'],
+  EmailRequests:['requestId','employeeId','requestedEmail','status','createdAt','reviewedAt'],
+  Preferences:['employeeId','bookingNotifications','reminderEnabled','reminderMinutes'],
+  Requests:['requestId','employeeId','action','status','bookingId','createdAt','updatedAt']
+});
+/** Owner-only manual test setup. Never deploy this project publicly. */
 function initializeStorage(){
-  sheet_('Employees',EMPLOYEE_COLUMNS);
-  sheet_('Bookings',BOOKING_COLUMNS);
-  sheet_('Audit',AUDIT_COLUMNS);
+  assertTestEnvironment_();
+  const lock=LockService.getScriptLock();
+  lock.waitLock(30000);
+  try{
+    const employees=sheet_('Employees',EMPLOYEE_COLUMNS);
+    employees.getRange('A:A').setNumberFormat('@');
+    sheet_('Bookings',BOOKING_COLUMNS);
+    sheet_('Audit',AUDIT_COLUMNS);
+    Object.keys(EXTRA_SCHEMAS).forEach(name=>sheet_(name,EXTRA_SCHEMAS[name]));
+    SpreadsheetApp.flush();
+  }finally{lock.releaseLock()}
+}
+function assertTestEnvironment_(){
+  if(PropertiesService.getScriptProperties().getProperty('APP_ENV')!=='TEST')throw new Error('TEST environment required');
+}
+/** Read-only connectivity check. No identifiers or employee data are logged. */
+function verifyTestConnections(){
+  assertTestEnvironment_();
+  const ss=spreadsheet_();
+  if(ss.getSpreadsheetTimeZone()!==CONFIG.timezone||Session.getScriptTimeZone()!==CONFIG.timezone)throw new Error('Set spreadsheet and script timezone to Asia/Taipei');
+  const props=PropertiesService.getScriptProperties();
+  const ids=Object.values(CONFIG.calendars).map(key=>props.getProperty(key));
+  if(ids.some(id=>!id)||new Set(ids).size!==5)throw new Error('Five distinct calendars required');
+  const rooms=Object.keys(CONFIG.calendars).map(roomId=>{
+    const cal=calendar_(roomId);
+    if(cal.getTimeZone()!==CONFIG.timezone)throw new Error('Incorrect calendar timezone: '+roomId);
+    cal.getEvents(new Date(),new Date(Date.now()+60000));
+    return {roomId,readable:true};
+  });
+  const result={environment:'TEST',spreadsheetReadable:true,rooms};
+  console.log(JSON.stringify(result));
+  return result;
 }
 /** Employee lookup is internal only. Never return the whole employee roster. */
 function findEmployee_(employeeId){

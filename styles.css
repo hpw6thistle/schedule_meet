@@ -38,7 +38,7 @@ button:active:not(:disabled) {transform: scale(.985);}
 .surface:hover {box-shadow: 0 27px 74px rgba(30,58,100,.11),0 2px 10px rgba(30,58,100,.035);}
 .toolbar {position: relative; z-index: 7; display: flex; justify-content: space-between; align-items: center; gap: 13px; padding: 16px 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap;}
 .dateGroup {display: flex; align-items: center; gap: 8px;}
-.dateTrigger {min-width: 205px; font-size: 15px; font-weight: 760;}
+.dateTrigger {min-width: 155px; font-size: 15px; font-weight: 760;}
 .dateTrigger svg {width: 15px; height: 15px;}
 .today {font-size: 13px;}
 .toolGroup .select {height: 39px;}
@@ -142,7 +142,7 @@ body[data-view="mine"]:before {background: #f6f6f4;}
 .wordmark {font-size: 23px; font-weight: 850; letter-spacing: -1.15px; color: #141716;}
 .wordmarkDot {color: var(--brand);}
 .mainNav {position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:0;border:0;background:transparent;border-radius:0;box-shadow:none;}
-.navTab {border:0;border-bottom:2px solid transparent;background:none;color:inherit;border-radius:0;height:40px;padding:0 18px;font-weight:690;font-size:13px;white-space:nowrap;}
+.navTab {border:0;border-bottom:2px solid transparent;background:none;color:inherit;border-radius:0;height:40px;padding:0 18px;font-weight:690;font-size:17px;white-space:nowrap;}
 .navTab:hover {background: #f5f4f1;}
 .navTab.current {background:transparent;color:inherit;border-bottom-color:currentColor;}
 .navCount {display: inline-flex; justify-content: center; align-items: center; margin-left: 3px; font-size: 11px; min-width: 18px; height: 18px; border-radius: 50%; background: #eae9e5; color: #4a4a47;}
@@ -248,7 +248,7 @@ body.hero-content-ready[data-view="home"] .homeShortcut {opacity: 1; transform: 
 .emptyIcon {font-size: 45px; color: #aeb9c5;}
 .btn.orangeMini {background: #ea4b2b; color: white; border-color: #ea4b2b;}
 .appNavbar {display: grid; grid-template-columns: minmax(110px,1fr) auto minmax(170px,1fr); align-items: center; justify-content: initial; gap: 14px; top: 0;}
-.navHomeBack {justify-self: start; display: inline-flex; align-items: center; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 760; padding: 12px 10px; border-radius: 10px;}
+.navHomeBack {justify-self: start; display: inline-flex; align-items: center; gap: 10px; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 760; padding: 12px 10px; border-radius: 10px;}
 .navHomeBack:hover {background: rgba(0,0,0,.045);}
 .appNavbar .mainNav {position: static; left: auto; top: auto; transform: none; width: max-content; max-width: 100%; margin: auto; flex: initial; box-shadow:none;}
 .appNavbar .navright {justify-self: end; margin-left: 0; min-width: 0;}
@@ -382,7 +382,7 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
   .textCTA {font-size: 12px; gap: 8px;}
 }
 @media (max-width:390px) {
-  .navTab {padding: 0 9px; font-size: 12px;}
+   .navTab {padding: 0 9px; font-size: 15px;}
   .wordmark {font-size: 19px;}
   .heroDate {display: none;}
 }
@@ -563,11 +563,11 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
  body[data-view="schedule"] .dateGroup,
  body[data-view="schedule"] .toolGroup{min-width:0;max-width:100%}
  body[data-view="schedule"] .toolbar{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px}
- body[data-view="schedule"] .dateGroup{display:flex;width:100%;gap:0}
+ body[data-view="schedule"] .dateGroup{display:flex;width:100%;gap:8px}
  body[data-view="schedule"] #prevDay,
  body[data-view="schedule"] #nextDay,
  body[data-view="schedule"] #todayBtn{display:none}
- body[data-view="schedule"] #dateTrigger{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-width:0;max-width:100%;padding:10px 8px;font-size:clamp(12px,3.6vw,15px);white-space:nowrap}
+ body[data-view="schedule"] #dateTrigger{display:flex;justify-content:center;align-items:center;gap:8px;flex:1;width:auto;min-width:0;max-width:100%;padding:10px 8px;font-size:clamp(12px,3.6vw,15px);white-space:nowrap}
  body[data-view="schedule"] #currentDate{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
  body[data-view="schedule"] .toolGroup{display:flex;justify-content:stretch;width:100%}
  body[data-view="schedule"] .quickAnchor{width:100%;min-width:0}
@@ -618,7 +618,7 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
  body[data-view="home"] .heroDock{z-index:1}
  body[data-view="home"] .heroDock{--home-edge:clamp(24px,3vw,56px);display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:24px;row-gap:clamp(16px,3vh,32px);padding:var(--home-edge);box-sizing:border-box}
  body[data-view="home"] .heroDock .heroMeta{position:static;grid-column:1;grid-row:1;transform:none;align-items:flex-start;text-align:left;max-width:100%}
- body[data-view="home"] .heroDock .todayRooms{position:static;grid-column:1;grid-row:2;align-self:start;width:100%;contain:inline-size;max-height:100%;min-height:0;margin:0;padding:0;border:0;overflow-y:auto;scrollbar-width:none}
+ body[data-view="home"] .heroDock .todayRooms{position:static;grid-column:1;grid-row:2;align-self:end;width:100%;contain:inline-size;max-height:100%;min-height:0;margin:0;padding:0;border:0;overflow-y:auto;scrollbar-width:none}
  body[data-view="home"] .heroDock .todayRooms::-webkit-scrollbar{display:none}
  body[data-view="home"] .heroAction{inset:auto var(--home-edge) var(--home-edge) auto}
 
@@ -650,3 +650,17 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 #scheduleView .titleRow .quickPopover{right:0;max-width:calc(100vw - 32px)}
 @media(max-width:700px){#scheduleView .titleRow{flex-wrap:wrap;gap:10px}#scheduleView .titleRow .toolGroup{margin-left:auto}#scheduleView .titleRow #quickOpen{width:auto;white-space:nowrap}}
 
+
+/* Monthly overview: reuse department colors without daily timeline positioning. */
+#scheduleView .titleRow,#mineView .titleRow{justify-content:flex-end}
+#monthViewToggle[aria-pressed="true"]{background:#e9eef5;border-color:#aebdce}
+.monthlyNav{display:flex;align-items:center;justify-content:center;gap:18px;padding:12px}
+.monthlyScroll{overflow-x:auto}
+.monthlyGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));min-width:700px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.monthlyDow{text-align:center;padding:10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-weight:650}
+.monthlyCell{min-width:0;min-height:112px;padding:5px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.monthlyCell.outside{background:#f5f5f5}
+.monthlyDate.btn{align-self:flex-start;min-height:28px;padding:0 8px;border:0;background:transparent}
+.monthlyDate.today{background:#1769c2;color:white;border-radius:50%}
+.monthlyCell .monthlyEvent.event{position:static;inset:auto;width:auto;height:auto;min-height:0;display:block;padding:4px 5px;border-radius:5px;font-size:11px;line-height:1.4;white-space:normal;overflow-wrap:anywhere;cursor:default;box-shadow:none}
+@media(max-width:700px){#monthViewToggle{flex:none;padding-inline:10px}.monthlyGrid{min-width:630px}}

@@ -662,6 +662,11 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 .monthlyCell.outside{background:#f5f5f5}
 .monthlyDate.btn{align-self:flex-start;min-height:28px;padding:0 8px;border:0;background:transparent}
 .monthlyDate.today{background:#1769c2;color:white;border-radius:50%}
-.monthlyCell .monthlyEvent.event{position:static;inset:auto;width:auto;height:auto;min-height:0;display:block;padding:4px 5px;border-radius:5px;font-size:11px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:default;box-shadow:none;background:var(--dept-color,#5d6c80);border-color:transparent;color:#fff}
+.monthlyCell .monthlyEvent.event{position:static;inset:auto;width:100%;height:auto;min-height:26px;display:block;padding:4px 5px;border-radius:4px;font-size:11px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;box-shadow:none;background:#dce8f5;border-color:transparent;color:#233b55;text-align:left}
+.monthlyCell .monthlyEvent.event:nth-of-type(odd){background:#edf3fa}
+.monthlyCell .monthlyEvent.event:hover,.monthlyCell .monthlyEvent.event:focus-visible{background:#c2d5eb}
+.monthlyCell.bookable{cursor:pointer}
+.monthlyHint{margin:0;padding:0 12px 10px;text-align:center;font-size:12px;color:#526275}
+.monthlyScroll{max-width:100%;min-width:0;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
 .monthlyRoomFilter{margin-left:auto;max-width:100%}
-@media(max-width:700px){#monthViewToggle{flex:none;padding-inline:10px}.monthlyGrid{min-width:630px}.monthlyRoomFilter{align-self:flex-end;width:auto}}
+@media(max-width:700px){#monthViewToggle{flex:none;padding-inline:10px}.monthlyGrid{min-width:980px}.monthlyRoomFilter{align-self:flex-end;width:auto}.monthlyCell .monthlyEvent.event{min-height:36px;font-size:12px}.monthlyDate.btn{min-height:40px}.month-mode{min-width:0;max-width:100%}.monthlyHint{text-align:left}}

@@ -307,7 +307,8 @@ body.hero-content-ready[data-view="home"] .heroDock {opacity:1;transform:none;}
 /* Google Workspace info belongs exclusively to the schedule footer. */
 .appFootbar {display:flex;justify-content:flex-end;align-items:center;min-height:70px;padding:18px clamp(18px,4vw,64px) 26px;}
 .appFootbar[hidden] {display:none;}
-.appFootbar .integrationPill {display:inline-flex;white-space:nowrap;}
+.appFootbar .integrationPill {display:inline-flex;white-space:nowrap;font-size:12px;min-height:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;text-decoration:underline;text-underline-offset:3px;color:var(--ink);}
+.appFootbar .integrationPill:hover {background:none;border:0;box-shadow:none;opacity:.75;}
 /* Keep the popover on top of schedule headers and equipment tooltips. */
 .scheduleSurface {position:relative;overflow:visible;isolation:isolate;}
 .scheduleSurface .toolbar {position:relative;z-index:110;overflow:visible;}
@@ -698,4 +699,21 @@ body[data-view="home"] .heroCTA::after{content:" ↗";font-size:.85em;display:in
  body[data-view="schedule"] #quickOpen{width:100%;max-width:100%;min-width:0;justify-content:center;white-space:normal}
  body[data-view="schedule"] .mobileRoomPicker{width:100%;min-width:0;max-width:100%;overflow-x:auto}
  body[data-view="schedule"] .scheduleScroll{width:100%;min-width:0;max-width:100%;overflow-x:hidden}
+}
+
+/* v2.0.4: compact desktop lock-screen tiles and availability contrast. */
+.schedule.showAvailability .event{filter:grayscale(1);opacity:.55}
+.schedule.showAvailability .event:hover,.schedule.showAvailability .event:focus-visible{opacity:.85}
+@media(min-width:701px){
+ body[data-view="home"] .immersiveHome{padding:0}
+ body[data-view="home"] .heroFrame{height:100%;justify-content:stretch}
+ body[data-view="home"] .heroDock{position:relative;height:100%;width:100%;padding:0;gap:0}
+ body[data-view="home"] .heroDock .heroMeta{position:absolute;top:25%;left:50%;transform:translate(-50%,-50%)}
+ body[data-view="home"] .heroDock .todayRooms{position:absolute;bottom:clamp(24px,7svh,65px);left:50%;transform:translateX(-50%);width:min(500px,calc(100% - 32px));max-width:100%}
+ body[data-view="home"] .todayRoomsList{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ body[data-view="home"] .todayRoomChip{min-height:48px;padding:6px 8px;gap:2px;border-radius:10px}
+ body[data-view="home"] .todayRoomName{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+ body[data-view="home"] .todayRoomStatus{font-size:11px;line-height:1.25}
+ body[data-view="home"] .todayRoomDetail{display:none}
+ body[data-view="home"] .todayRoomsList .heroCTA{min-height:48px;padding:6px 8px;font-size:13px;border-radius:10px}
 }

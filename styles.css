@@ -648,8 +648,6 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 #repeatWeekdays[hidden],#repeatMonthField[hidden],#repeatExtra[hidden]{display:none}
 #repeatWeekdays{gap:8px}
 #scheduleView #prevDay,#scheduleView #nextDay,#scheduleView #todayBtn{display:none}
-@media(max-width:700px){
-
 /* Monthly overview: reuse department colors without daily timeline positioning. */
 #monthViewToggle[aria-pressed="true"]{background:#e9eef5;border-color:#aebdce}
 .monthlyNav{display:flex;align-items:center;justify-content:center;gap:18px;padding:12px}

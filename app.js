@@ -62,12 +62,13 @@ function renderHome(){
   const name=document.createElement('span');name.className='todayRoomName';name.textContent=room.name;
   const status=document.createElement('span');status.className='todayRoomStatus';
   const dot=document.createElement('span');dot.className='todayRoomDot'+(active?' isBusy':nextFree===undefined?' isClosed':' isFree');dot.setAttribute('aria-hidden','true');
-  const label=active?'使用中':'空閒中';status.append(dot);
+  const label=active?'使用中':nextFree===undefined?'無剩餘時段':'空閒中';status.append(dot);
   const detail=document.createElement('span');detail.className='todayRoomDetail';
   if(live>=18)detail.textContent='今日排程已結束';
+  else if(active)detail.textContent=nextFree===undefined?'使用中（今日無剩餘時段）':'使用中（'+toTime(nextFree)+' 釋出）';
   else if(nextFree===undefined)detail.textContent='今日時段已滿';
-  else if(live<0||active||nextFree>live)detail.textContent=toTime(nextFree)+' 後可使用';
-  else detail.textContent='可立即使用';
+  else if(live<0)detail.textContent=toTime(nextFree)+' 後可使用';
+  else {const nextBusy=events.filter(e=>e.room===room.id&&e.start>live).reduce((min,e)=>Math.min(min,e.start),18);detail.textContent='現在空閒（至 '+toTime(nextBusy)+'）';}
   card.append(status,name,detail);
   card.title=room.name+'｜快速預約';card.setAttribute('aria-label',room.name+'，'+label+'，'+detail.textContent+'，快速預約（示範資料）');
   card.addEventListener('click',()=>{

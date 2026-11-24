@@ -79,7 +79,7 @@ button:active:not(:disabled) {transform: scale(.985);}
 .event.other {background: #eaf0f6; border-color: #d2deea; color: #647891;}
 .event.busy {background: #e9eef5; border-color: #ccd6e1; color: #5d6c80;}
 .footerline {height: 12px; background: #fff;}
-.popShell {position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px;}
+.popShell {position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 20px;}
 .scrim {position: absolute; inset: 0; background: rgba(17,32,53,.30); backdrop-filter: blur(5px); animation: fadeIn .21s ease both;}
 .dialog {position: relative; z-index: 1; background: white; border: 1px solid #d9e3ed; border-radius: 18px; box-shadow: var(--float); width: min(510px,100%); max-height: min(88vh,850px); overflow: auto; animation: dialogIn .24s cubic-bezier(.19,1,.22,1) both;}
 .dialog.wide {width: min(590px,100%);}
@@ -104,7 +104,7 @@ button:active:not(:disabled) {transform: scale(.985);}
 .repeatPreview .conflict {color: #b33e53;}
 .minor {font-size: 12px; color: var(--muted);}
 .miniText {font-size: 13px; line-height: 1.7; color: #53637a;}
-.toast {position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 90; border: 1px solid #243b55; background: #213952; color: white; border-radius: 10px; box-shadow: 0 12px 45px #1225424a; padding: 12px 18px; font-size: 13px; animation: toastIn .2s ease both; max-width: calc(100vw - 30px);}
+.toast {position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 2100; border: 1px solid #243b55; background: #213952; color: white; border-radius: 10px; box-shadow: 0 12px 45px #1225424a; padding: 12px 18px; font-size: 13px; animation: toastIn .2s ease both; max-width: calc(100vw - 30px);}
 .minePanel {padding: 20px;}
 .mineToolbar {display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px;}
 .mineToolbar .select {width: auto; min-width: 145px;}

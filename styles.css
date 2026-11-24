@@ -637,8 +637,8 @@ body[data-view="home"] .heroCTA{display:flex;align-items:center;justify-content:
 body[data-view="home"] .heroCTA::after{content:"↗";font-size:.9em}
 body[data-view="home"] .heroCTA:hover{background:#e8edf2;color:#1e293b;transform:translateY(-3px);box-shadow:0 15px 32px rgba(0,0,0,.4)}
 body[data-view="home"] .heroCTA:focus-visible,body[data-view="home"] .todayRoomChip:focus-visible{outline:3px solid #fff;outline-offset:2px}
-body[data-view="home"] .heroDock .todayRooms{position:absolute;inset:auto 0 clamp(24px,6svh,56px);transform:none;width:min(790px,calc(100% - 48px));max-width:100%;margin:0 auto;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.24);text-shadow:none}
-body[data-view="home"] .todayRoomsList{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;width:100%;max-width:100%;max-height:none;overflow:visible}
+body[data-view="home"] .heroDock .todayRooms{position:absolute;inset:auto 0 clamp(24px,6svh,56px);transform:none;width:min(854px,calc(100% - 48px));max-width:100%;margin:0 auto;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.24);text-shadow:none}
+body[data-view="home"] .todayRoomsList{display:grid;grid-template-columns:repeat(3,minmax(0,150fr)) repeat(2,minmax(0,182fr));gap:10px;width:100%;max-width:100%;max-height:none;overflow:visible}
 body[data-view="home"] .todayRoomChip{display:grid;grid-template-columns:12px minmax(0,1fr) 9px;grid-template-rows:auto auto;align-content:center;align-items:center;column-gap:8px;row-gap:3px;width:100%;min-width:0;height:56px;min-height:56px;padding:7px 12px;text-align:left;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(28,28,28,.56);color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 18px rgba(0,0,0,.16);transition:background-color .2s ease,opacity .2s ease,transform .2s ease}
 body[data-view="home"] .todayRoomChip:hover{background:rgba(20,20,20,.75)}
 body[data-view="home"] .todayRoomChip:active{transform:scale(.98)}

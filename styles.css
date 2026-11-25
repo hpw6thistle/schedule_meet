@@ -687,3 +687,11 @@ body[data-view="home"] .todayRoomDetail{grid-column:2;grid-row:2;min-width:0;fon
 .appNavbar .navtool #quickOpen svg{width:20px;height:20px;flex:none}
 #quickDurationLabel{display:none!important}
 @media(max-width:767.98px){body[data-view="home"] .heroAction{bottom:10px}}
+
+/* Distinct, low-saturation room header colors. */
+.schedule .roomHeader[data-mobile-room="3s"]{background:#eaf4ff}
+.schedule .roomHeader[data-mobile-room="3l"]{background:#edf8ee}
+.schedule .roomHeader[data-mobile-room="6f"]{background:#fff3e6}
+.schedule .roomHeader[data-mobile-room="7s"]{background:#f3efff}
+.schedule .roomHeader[data-mobile-room="7l"]{background:#fff0f3}
+.schedule .roomHeader:hover,.schedule .roomHeader:focus-visible{filter:brightness(.97)}
